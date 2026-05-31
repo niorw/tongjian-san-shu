@@ -1,0 +1,2818 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>三书会通 — 通鉴纪事本末 · 资治通鉴 · 读通鉴论</title>
+<style>
+/* ===== Reset & Base ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0f0e0c;--bg2:#1a1816;--bg3:#242220;--bg4:#2e2b28;
+  --gold:#c9a84c;--gold2:#e6c96e;--red:#b94a4a;--red2:#d46a6a;
+  --blue:#4a7ab9;--blue2:#6a9ad4;--green:#4a9a6a;--green2:#6ab98a;
+  --text:#d4cfc6;--text2:#a8a298;--text3:#7a756c;
+  --border:#3a3632;--border2:#4a4642;
+  --serif:'Noto Serif SC','Source Han Serif SC','STSong','SimSun',serif;
+  --sans:'Noto Sans SC','Source Han Sans SC','PingFang SC','Microsoft YaHei',sans-serif;
+  --mono:'Fira Code','Consolas',monospace;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--serif);background:var(--bg);color:var(--text);line-height:1.8;overflow-x:hidden;transition:background .4s,color .4s}
+
+/* ===== Light Theme ===== */
+body.light{
+  --bg:#faf8f4;--bg2:#f5f2ec;--bg3:#edeae4;--bg4:#e5e2dc;
+  --gold:#8b6914;--gold2:#a67c1a;--red:#9a3030;--red2:#b84848;
+  --blue:#3a5a8a;--blue2:#4a6a9a;--green:#3a7a5a;--green2:#4a8a6a;
+  --text:#2a2520;--text2:#5a554e;--text3:#8a857e;
+  --border:#d4d0c8;--border2:#c0bcb2;
+}
+body.light .sidebar{background:#f0ede6;border-right-color:#d4d0c8}
+body.light .sidebar-header h2{color:#8b6914}
+body.light .search-bar{background:#f5f2ec;border-bottom-color:#d4d0c8}
+body.light .search-bar input{background:#faf8f4;border-color:#d4d0c8;color:#2a2520}
+body.light .banner{background:linear-gradient(180deg,#faf8f4 0%,#f0ede6 50%,#faf8f4 100%)}
+body.light .banner-content h1{color:#8b6914;text-shadow:none}
+body.light .event-card{box-shadow:0 2px 8px rgba(0,0,0,.06)}
+body.light .event-card:hover{box-shadow:0 4px 16px rgba(0,0,0,.1)}
+body.light .wf-box{border-color:rgba(139,105,20,.2);background:linear-gradient(135deg,rgba(139,105,20,.04),rgba(154,48,48,.03))}
+body.light .passage{border-left-color:#d4d0c8;background:#f0ede6}
+body.light .passage.gold{border-left-color:#8b6914;background:rgba(139,105,20,.03)}
+body.light .passage.red{border-left-color:#9a3030;background:rgba(154,48,48,.03)}
+body.light .passage.blue{border-left-color:#3a5a8a;background:rgba(58,90,138,.03)}
+body.light .passage.green{border-left-color:#3a7a5a;background:rgba(58,122,90,.03)}
+body.light .back-top{background:#8b6914;color:#faf8f4;box-shadow:0 2px 10px rgba(139,105,20,.2)}
+body.light .sidebar-toggle{background:#edeae4;border-color:#d4d0c8;color:#8b6914}
+body.light .progress-bar{background:linear-gradient(90deg,#8b6914,#9a3030)}
+body.light .sidebar-header .era-btn{background:#edeae4;border-color:#d4d0c8;color:#5a554e}
+body.light .sidebar-header .era-btn:hover,.sidebar-header .era-btn.active{background:#8b6914;color:#faf8f4;border-color:#8b6914}
+body.light .nav-item{color:#5a554e}
+body.light .nav-item:hover,.nav-item.active{color:#8b6914;background:rgba(139,105,20,.04);border-left-color:#8b6914}
+body.light .nav-group-title{color:#8b6914}
+body.light .nav-group-title:hover{background:rgba(139,105,20,.03);border-left-color:#8b6914}
+body.light .tab-btn{color:#8a857e}
+body.light .tab-btn:hover{color:#5a554e}
+body.light .tab-btn.active{color:#8b6914;border-bottom-color:#8b6914}
+body.light .wf-box .wf-title{color:#8b6914}
+body.light .event-header:hover{background:rgba(139,105,20,.02)}
+body.light .timeline-node{background:#edeae4;border-color:#d4d0c8}
+body.light .timeline-node:hover,.timeline-node.active{background:#8b6914;border-color:#8b6914}
+body.light .timeline-line{background:#d4d0c8}
+body.light .book-card{background:rgba(139,105,20,.03);border-color:#d4d0c8}
+body.light .book-card:hover{border-color:#8b6914;box-shadow:0 4px 15px rgba(139,105,20,.1)}
+body.light mark{background:rgba(139,105,20,.2);color:#8b6914}
+::selection{background:var(--gold);color:var(--bg)}
+a{color:var(--gold);text-decoration:none;transition:.3s}
+a:hover{color:var(--gold2)}
+
+/* ===== Scrollbar ===== */
+::-webkit-scrollbar{width:8px}
+::-webkit-scrollbar-track{background:var(--bg2)}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:4px}
+::-webkit-scrollbar-thumb:hover{background:var(--gold)}
+
+/* ===== Loading Screen ===== */
+#loading{position:fixed;inset:0;background:var(--bg);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .8s}
+#loading.hide{opacity:0;pointer-events:none}
+#loading h1{font-size:2.5rem;color:var(--gold);letter-spacing:.3em;margin-bottom:1rem;animation:pulse 2s infinite}
+#loading p{color:var(--text2);font-size:1rem;letter-spacing:.2em}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+
+/* ===== Top Banner ===== */
+.banner{position:relative;width:100%;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;background:linear-gradient(180deg,#0a0908 0%,#1a1510 50%,#0f0e0c 100%)}
+.banner::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9a84c' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+.banner-content{position:relative;z-index:2;padding:2rem}
+.banner-content h1{font-size:clamp(2.5rem,6vw,5rem);color:var(--gold);letter-spacing:.15em;margin-bottom:.5em;text-shadow:0 0 40px rgba(201,168,76,.3);font-weight:700}
+.banner-content .subtitle{font-size:clamp(1rem,2.5vw,1.5rem);color:var(--text2);letter-spacing:.3em;margin-bottom:2rem}
+.banner-content .three-books{display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;margin-bottom:3rem}
+.banner-content .book-card{background:rgba(201,168,76,.06);border:1px solid var(--border);border-radius:8px;padding:1.5rem 2rem;min-width:200px;transition:.4s;cursor:default}
+.banner-content .book-card:hover{border-color:var(--gold);transform:translateY(-4px);box-shadow:0 8px 30px rgba(201,168,76,.15)}
+.banner-content .book-card h3{color:var(--gold);font-size:1.1rem;margin-bottom:.5rem}
+.banner-content .book-card p{color:var(--text2);font-size:.85rem}
+.scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);color:var(--text3);font-size:.8rem;animation:bounce 2s infinite}
+.scroll-hint::after{content:'↓';display:block;text-align:center;font-size:1.5rem;margin-top:.5rem;animation:bounce 2s infinite}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+
+/* ===== Layout ===== */
+.app{display:flex;min-height:100vh}
+.sidebar{position:fixed;top:0;left:0;width:280px;height:100vh;background:var(--bg2);border-right:1px solid var(--border);overflow-y:auto;z-index:100;transition:transform .4s;padding-bottom:2rem}
+.sidebar.closed{transform:translateX(-100%)}
+.sidebar-header{padding:1.5rem;border-bottom:1px solid var(--border);text-align:center}
+.sidebar-header h2{color:var(--gold);font-size:1rem;letter-spacing:.2em}
+.sidebar-header .era-nav{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.8rem;justify-content:center}
+.sidebar-header .era-btn{background:var(--bg3);border:1px solid var(--border);color:var(--text2);padding:.25rem .6rem;border-radius:4px;font-size:.7rem;cursor:pointer;transition:.3s;font-family:var(--sans)}
+.sidebar-header .era-btn:hover,.sidebar-header .era-btn.active{background:var(--gold);color:var(--bg);border-color:var(--gold)}
+.nav-group{margin-top:.5rem}
+.nav-group-title{padding:.6rem 1.2rem;color:var(--gold);font-size:.8rem;letter-spacing:.15em;cursor:pointer;display:flex;align-items:center;justify-content:space-between;transition:.3s;border-left:3px solid transparent}
+.nav-group-title:hover{background:rgba(201,168,76,.05);border-left-color:var(--gold)}
+.nav-group-title .arrow{transition:transform .3s;font-size:.7rem}
+.nav-group-title.open .arrow{transform:rotate(90deg)}
+.nav-items{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.nav-items.open{max-height:2000px}
+.nav-item{padding:.4rem 1.2rem .4rem 2rem;color:var(--text2);font-size:.78rem;cursor:pointer;transition:.3s;display:flex;align-items:center;gap:.5rem;border-left:3px solid transparent}
+.nav-item:hover{color:var(--text);background:rgba(201,168,76,.03);border-left-color:var(--gold)}
+.nav-item.active{color:var(--gold);border-left-color:var(--gold);background:rgba(201,168,76,.05)}
+.nav-item .dot{width:5px;height:5px;border-radius:50%;background:var(--border2);flex-shrink:0;transition:.3s}
+.nav-item:hover .dot,.nav-item.active .dot{background:var(--gold)}
+
+/* ===== Toggle Button ===== */
+.sidebar-toggle{position:fixed;top:1rem;left:1rem;z-index:200;background:var(--bg3);border:1px solid var(--border);color:var(--gold);width:40px;height:40px;border-radius:6px;cursor:pointer;font-size:1.2rem;display:flex;align-items:center;justify-content:center;transition:.3s}
+.sidebar-toggle:hover{background:var(--gold);color:var(--bg)}
+.sidebar.open~.sidebar-toggle{left:290px}
+
+/* ===== Main Content ===== */
+.main{flex:1;margin-left:280px;transition:margin .4s;padding:0 0 4rem}
+.main.full{margin-left:0}
+
+/* ===== Era Section ===== */
+.era-section{padding:4rem 2rem 2rem}
+.era-header{text-align:center;margin-bottom:3rem;position:relative}
+.era-header h2{font-size:2.2rem;color:var(--gold);letter-spacing:.15em;margin-bottom:.5rem}
+.era-header .era-meta{color:var(--text2);font-size:.9rem;letter-spacing:.1em}
+.era-header::after{content:'';display:block;width:120px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:1.5rem auto 0}
+
+/* ===== Timeline ===== */
+.timeline-bar{position:relative;padding:2rem 0;margin:0 auto 3rem;max-width:900px}
+.timeline-line{position:absolute;top:50%;left:0;right:0;height:2px;background:var(--border);transform:translateY(-50%)}
+.timeline-nodes{display:flex;justify-content:space-between;position:relative;z-index:1}
+.timeline-node{width:14px;height:14px;border-radius:50%;background:var(--bg3);border:2px solid var(--border);cursor:pointer;transition:.3s;position:relative}
+.timeline-node:hover,.timeline-node.active{background:var(--gold);border-color:var(--gold);transform:scale(1.4)}
+.timeline-node .tip{position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:var(--bg4);border:1px solid var(--gold);color:var(--gold);padding:.2rem .6rem;border-radius:4px;font-size:.7rem;white-space:nowrap;opacity:0;transition:.3s;pointer-events:none}
+.timeline-node:hover .tip{opacity:1}
+
+/* ===== Event Card ===== */
+.event-card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;margin:0 auto 2rem;max-width:960px;overflow:hidden;transition:.4s;opacity:0;transform:translateY(30px)}
+.event-card.visible{opacity:1;transform:translateY(0)}
+.event-card:hover{border-color:var(--border2);box-shadow:0 4px 20px rgba(0,0,0,.3)}
+.event-header{padding:1.2rem 1.5rem;cursor:pointer;display:flex;align-items:center;gap:1rem;transition:.3s}
+.event-header:hover{background:rgba(201,168,76,.03)}
+.event-header .event-icon{width:44px;height:44px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
+.event-header .event-info{flex:1}
+.event-header .event-info h3{color:var(--text);font-size:1.1rem;margin-bottom:.2rem}
+.event-header .event-info .event-meta{display:flex;gap:1rem;flex-wrap:wrap}
+.event-header .event-info .event-meta span{color:var(--text3);font-size:.75rem;font-family:var(--sans);display:flex;align-items:center;gap:.3rem}
+.event-header .event-info .event-meta span::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--border2)}
+.event-header .event-info .event-meta span:first-child::before{display:none}
+.event-header .expand-icon{color:var(--text3);transition:.3s;font-size:1rem}
+.event-card.open .expand-icon{transform:rotate(180deg);color:var(--gold)}
+
+/* Card Body */
+.event-body{max-height:0;overflow:hidden;transition:max-height .6s ease}
+.event-card.open .event-body{max-height:8000px}
+.event-body-inner{padding:0 1.5rem 1.5rem}
+
+/* Tabs */
+.tabs{display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:1.2rem}
+.tab-btn{padding:.6rem 1.2rem;color:var(--text3);font-size:.82rem;cursor:pointer;transition:.3s;border-bottom:2px solid transparent;font-family:var(--sans);letter-spacing:.05em}
+.tab-btn:hover{color:var(--text2)}
+.tab-btn.active{color:var(--gold);border-bottom-color:var(--gold)}
+.tab-panel{display:none;animation:fadeIn .4s}
+.tab-panel.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* Content Blocks */
+.passage{background:var(--bg);border-left:3px solid var(--border);padding:1rem 1.2rem;margin:.8rem 0;border-radius:0 6px 6px 0;font-size:.92rem;line-height:2}
+.passage.gold{border-left-color:var(--gold);background:rgba(201,168,76,.04)}
+.passage.red{border-left-color:var(--red);background:rgba(185,74,74,.04)}
+.passage.blue{border-left-color:var(--blue);background:rgba(74,122,185,.04)}
+.passage.green{border-left-color:var(--green);background:rgba(74,154,106,.04)}
+.passage .label{font-size:.7rem;color:var(--text3);font-family:var(--sans);letter-spacing:.1em;display:block;margin-bottom:.5rem;text-transform:uppercase}
+.passage .source{font-size:.72rem;color:var(--text3);margin-top:.6rem;text-align:right;font-style:italic}
+.passage blockquote{border-left:2px solid var(--gold);padding-left:1rem;margin:.6rem 0;color:var(--text2);font-style:italic}
+
+/* Tags */
+.tags{display:flex;gap:.4rem;flex-wrap:wrap;margin:.8rem 0}
+.tag{background:var(--bg3);border:1px solid var(--border);color:var(--text2);padding:.15rem .5rem;border-radius:3px;font-size:.7rem;font-family:var(--sans)}
+.tag.time{color:var(--blue2);border-color:rgba(74,122,185,.3)}
+.tag.place{color:var(--green2);border-color:rgba(74,154,106,.3)}
+.tag.person{color:var(--gold2);border-color:rgba(201,168,76,.3)}
+.tag.event{color:var(--red2);border-color:rgba(185,74,74,.3)}
+
+/* Wang Fuzhi Commentary Box */
+.wf-box{background:linear-gradient(135deg,rgba(201,168,76,.06),rgba(185,74,74,.04));border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:1.2rem;margin:1rem 0;position:relative}
+.wf-box::before{content:'论';position:absolute;top:-10px;left:16px;background:var(--gold);color:var(--bg);width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700}
+.wf-box .wf-title{color:var(--gold);font-size:.85rem;margin-bottom:.6rem;font-weight:600}
+.wf-box .wf-text{color:var(--text);font-size:.88rem;line-height:2}
+.wf-box .wf-ref{color:var(--text3);font-size:.72rem;margin-top:.8rem;text-align:right}
+
+/* Summary Stats */
+.stats-bar{display:flex;gap:1.5rem;flex-wrap:wrap;padding:1rem 1.5rem;background:var(--bg);border-radius:8px;margin:1rem 0;border:1px solid var(--border)}
+.stat-item{text-align:center}
+.stat-item .stat-num{color:var(--gold);font-size:1.5rem;font-weight:700;font-family:var(--mono)}
+.stat-item .stat-label{color:var(--text3);font-size:.7rem;font-family:var(--sans);letter-spacing:.1em}
+
+/* Search */
+.search-bar{position:sticky;top:0;z-index:50;background:var(--bg2);border-bottom:1px solid var(--border);padding:.8rem 1.5rem;display:flex;align-items:center;gap:.8rem}
+.search-bar input{flex:1;background:var(--bg);border:1px solid var(--border);color:var(--text);padding:.5rem 1rem;border-radius:6px;font-size:.85rem;font-family:var(--serif);outline:none;transition:.3s}
+.search-bar input:focus{border-color:var(--gold)}
+.search-bar input::placeholder{color:var(--text3)}
+.search-bar .search-icon{color:var(--text3)}
+
+/* Back to top */
+.back-top{position:fixed;bottom:2rem;right:2rem;width:44px;height:44px;background:var(--gold);color:var(--bg);border:none;border-radius:50%;cursor:pointer;font-size:1.2rem;display:flex;align-items:center;justify-content:center;opacity:0;transition:.3s;z-index:90;box-shadow:0 4px 15px rgba(201,168,76,.3)}
+.back-top.show{opacity:1}
+
+/* ===== Progress Bar ===== */
+.progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--red));z-index:999;transition:width .1s}
+
+/* ===== Responsive ===== */
+@media(max-width:900px){
+  .sidebar{width:260px;transform:translateX(-100%)}
+  .sidebar.open{transform:translateX(0)}
+  .main{margin-left:0!important}
+  .sidebar-toggle{left:1rem!important}
+  .sidebar.open~.sidebar-toggle{left:270px!important}
+  .event-header{flex-direction:column;align-items:flex-start;gap:.6rem}
+  .banner-content .three-books{flex-direction:column;align-items:center}
+}
+
+/* ===== Print ===== */
+@media print{
+  .sidebar,.sidebar-toggle,.back-top,.search-bar,.progress-bar,.scroll-hint{display:none!important}
+  .main{margin-left:0!important}
+  .event-card{break-inside:avoid;opacity:1!important;transform:none!important}
+  .event-body{max-height:none!important}
+  body{background:#fff;color:#000}
+}
+
+/* ===== Highlight search ===== */
+mark{background:rgba(201,168,76,.3);color:var(--gold);padding:0 .15rem;border-radius:2px}
+
+.theme-toggle{background:var(--bg3);border:1px solid var(--border);color:var(--gold);width:32px;height:32px;border-radius:6px;cursor:pointer;font-size:1rem;display:inline-flex;align-items:center;justify-content:center;transition:.3s;margin-left:.5rem;vertical-align:middle}
+.theme-toggle:hover{background:var(--gold);color:var(--bg)}
+body.light .theme-toggle{background:#edeae4;border-color:#d4d0c8;color:#8b6914}
+body.light .theme-toggle:hover{background:#8b6914;color:#faf8f4}
+</style>
+</head>
+<body>
+
+<!-- Loading -->
+<div id="loading">
+  <h1>三书会通</h1>
+  <p>通鉴纪事本末 · 资治通鉴 · 读通鉴论</p>
+</div>
+
+<!-- Progress Bar -->
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- Banner -->
+<section class="banner" id="top">
+  <div class="banner-content">
+    <h1>三 书 会 通</h1>
+    <p class="subtitle">通鉴纪事本末 · 资治通鉴 · 读通鉴论</p>
+    <div class="three-books">
+      <div class="book-card">
+        <h3>📜 通鉴纪事本末</h3>
+        <p>南宋 · 袁枢 编<br>以事为纲，始末贯通<br>239个专题，42卷</p>
+      </div>
+      <div class="book-card">
+        <h3>📖 资治通鉴</h3>
+        <p>北宋 · 司马光 主编<br>编年体通史之冠<br>294卷，1362年</p>
+      </div>
+      <div class="book-card">
+        <h3>🖋 读通鉴论</h3>
+        <p>明末清初 · 王夫之 撰<br>以论代史，借古鉴今<br>30卷，附宋论15卷</p>
+      </div>
+    </div>
+    <div class="scroll-hint">向下探索</div>
+  </div>
+</section>
+
+<!-- App -->
+<div class="app">
+
+<!-- Sidebar -->
+<nav class="sidebar open" id="sidebar">
+  <div class="sidebar-header">
+    <h2>☰ 三书会通</h2>
+      <button class="theme-toggle" onclick="toggleTheme()" title="切换深色/浅色主题">🌓</button>
+    <div class="era-nav">
+      <button class="era-btn active" onclick="scrollToEra('era-wzqk')">战国秦</button>
+      <button class="era-btn" onclick="scrollToEra('era-qin')">秦</button>
+      <button class="era-btn" onclick="scrollToEra('era-han')">汉</button>
+      <button class="era-btn" onclick="scrollToEra('era-3k')">三国</button>
+      <button class="era-btn" onclick="scrollToEra('era-jin')">两晋</button>
+      <button class="era-btn" onclick="scrollToEra('era-nsdyn')">南北朝</button>
+      <button class="era-btn" onclick="scrollToEra('era-sui')">隋</button>
+      <button class="era-btn" onclick="scrollToEra('era-tang')">唐</button>
+      <button class="era-btn" onclick="scrollToEra('era-5d')">五代</button>
+    </div>
+  </div>
+
+  <!-- 战国秦 -->
+  <div class="nav-group">
+    <div class="nav-group-title open" onclick="toggleGroup(this)">
+      <span>【卷一】三家分晋 — 秦并天下</span><span class="arrow">▸</span>
+    </div>
+    <div class="nav-items open">
+      <div class="nav-item active" onclick="scrollToEvent('evt-sjfy')"><span class="dot"></span>三家分晋</div>
+      <div class="nav-item" onclick="scrollToEvent('evt-jssb')"><span class="dot"></span>秦始称霸·商鞅变法</div>
+      <div class="nav-item" onclick="scrollToEvent('evt-hzcs')"><span class="dot"></span>合纵连横</div>
+      <div class="nav-item" onclick="scrollToEvent('evt-ylpzh')"><span class="dot"></span>乐毅破齐·田单复国</div>
+      <div class="nav-item" onclick="scrollToEvent('evt-qjbz')"><span class="dot"></span>秦灭六国</div>
+    </div>
+  </div>
+
+  <!-- 秦 -->
+  <div class="nav-group">
+    <div class="nav-group-title" onclick="toggleGroup(this)">
+      <span>【卷二】秦兴亡</span><span class="arrow">▸</span>
+    </div>
+    <div class="nav-items">
+      <div class="nav-item" onclick="scrollToEvent('evt-hnxf')"><span class="dot"></span>豪杰亡秦</div>
+      <div class="nav-item" onclick="scrollToEvent('evt-sszh')"><span class="dot"></span>赵高篡秦</div>
+    </div>
+  </div>
+
+  <!-- 汉 -->
+  <div class="nav-group">
+    <div class="nav-group-title" onclick="toggleGroup(this)">
+      <span>【卷三至八】两汉兴衰</span><span class="arrow">▸</span>
+    </div>
+    <div class="nav-items">
+      <div class="nav-item" onclick="scrollToEvent('evt-chzz')"><span class="dot"></span>楚汉之争</div>
+      <div class="nav-item" onclick="scrollToEvent('evt-hdcl')"><span class="dot"></span>汉初吕后专政</div>
+      <div class="nav-item" onclick="scrollToEvent('evt-jwzz')"><span class="dot"></span>景武之治</div>
+      <div class="nav-item" onclick="scrollToEvent('evt-hxzz')"><span class="dot"></span>霍光辅政·宣帝中兴</div>
+      <div class="nav-item" onclick="scrollToEvent('evt-wmzx')"><span class="dot"></span>王莽篡汉</div>
+      <div class="nav-item" onclick="scrollToEvent('evt-dhzz')"><span class="dot"></span>光武中兴</div>
+      <div class="nav-item" onclick="scrollToEvent('evt-wmzz')"><span class="dot"></span>外戚宦官交替专权</div>
+      <div class="nav-item" onclick="scrollToEvent('evt-dhqm')"><span class="dot"></span>党锢之祸</div>
+      <div class="nav-item" onclick="scrollToEvent('evt-hmzz')"><span class="dot"></span>黄巾之乱·董卓入京</div>
+    </div>
+  </div>
+
+  <!-- 三国 -->
+  <div class="nav-group">
+    <div class="nav-group-title" onclick="toggleGroup(this)">
+      <span>【卷九至十一】三国鼎立</span><span class="arrow">▸</span>
+    </div>
+    <div class="nav-items">
+      <div class="nav-item" onclick="scrollToEvent('evt-cbwz')"><span class="dot"></span>曹操霸魏·挟天子</div>
+      <div class="nav-item" onclick="scrollToEvent('evt-scyj')"><span class="dot"></span>孙策创业·赤壁之战</div>
+      <div class="nav-item" onclick="scrollToEvent('evt-lbdf')"><span class="dot"></span>刘备入蜀·夷陵之战</div>
+      <div class="nav-item" onclick="scrollToEvent('evt-wwgq')"><span class="dot"></span>诸葛亮北伐</div>
+      <div class="nav-item" onclick="scrollToEvent('evt-sysm')"><span class="dot"></span>司马氏篡魏</div>
+    </div>
+  </div>
+
+  <!-- 两晋 -->
+  <div class="nav-group">
+    <div class="nav-group-title" onclick="toggleGroup(this)">
+      <span>【卷十二至十六】两晋风云</span><span class="arrow">▸</span>
+    </div>
+    <div class="nav-items">
+      <div class="nav-item" onclick="scrollToEvent('evt-xjzy')"><span class="dot"></span>西晋统一·八王之乱</div>
+      <div class="nav-item" onclick="scrollToEvent('evt-whdq')"><span class="dot"></span>五胡乱华·衣冠南渡</div>
+      <div class="nav-item" onclick="scrollToEvent('evt-djbx')"><span class="dot"></span>东晋北伐</div>
+      <div class="nav-item" onclick="scrollToEvent('evt-hxzz2')"><span class="dot"></span>桓玄篡位·刘裕代晋</div>
+    </div>
+  </div>
+
+  <!-- 南北朝 -->
+  <div class="nav-group">
+    <div class="nav-group-title" onclick="toggleGroup(this)">
+      <span>【卷十七至二十二】南北朝</span><span class="arrow">▸</span>
+    </div>
+    <div class="nav-items">
+      <div class="nav-item" onclick="scrollToEvent('evt-ssyd')"><span class="dot"></span>刘宋代晋·元嘉之治</div>
+      <div class="nav-item" onclick="scrollToEvent('evt-bwtn')"><span class="dot"></span>北魏统一北方·孝文改革</div>
+      <div class="nav-item" onclick="scrollToEvent('evt-hzfb')"><span class="dot"></span>侯景之乱·南朝衰落</div>
+      <div class="nav-item" onclick="scrollToEvent('evt-bfht')"><span class="dot"></span>北周灭北齐·杨坚代周</div>
+    </div>
+  </div>
+
+  <!-- 隋 -->
+  <div class="nav-group">
+    <div class="nav-group-title" onclick="toggleGroup(this)">
+      <span>【卷二十三至二十五】隋</span><span class="arrow">▸</span>
+    </div>
+    <div class="nav-items">
+      <div class="nav-item" onclick="scrollToEvent('evt-stda')"><span class="dot"></span>隋统一·开皇之治</div>
+      <div class="nav-item" onclick="scrollToEvent('evt-sydz')"><span class="dot"></span>隋炀帝征高丽·开运河</div>
+      <div class="nav-item" onclick="scrollToEvent('evt-smzh')"><span class="dot"></span>隋末群雄</div>
+    </div>
+  </div>
+
+  <!-- 唐 -->
+  <div class="nav-group">
+    <div class="nav-group-title" onclick="toggleGroup(this)">
+      <span>【卷二十六至三十八】大唐</span><span class="arrow">▸</span>
+    </div>
+    <div class="nav-items">
+      <div class="nav-item" onclick="scrollToEvent('evt-tcgj')"><span class="dot"></span>唐初建国·玄武门之变</div>
+      <div class="nav-item" onclick="scrollToEvent('evt-gzzz')"><span class="dot"></span>贞观之治</div>
+      <div class="nav-item" onclick="scrollToEvent('evt-wzzt')"><span class="dot"></span>武则天称帝</div>
+      <div class="nav-item" onclick="scrollToEvent('evt-kssh')"><span class="dot"></span>开元盛世</div>
+      <div class="nav-item" onclick="scrollToEvent('evt-aszl')"><span class="dot"></span>安史之乱</div>
+      <div class="nav-item" onclick="scrollToEvent('evt-fzgs')"><span class="dot"></span>藩镇割据</div>
+      <div class="nav-item" onclick="scrollToEvent('evt-nygn')"><span class="dot"></span>牛李党争</div>
+      <div class="nav-item" onclick="scrollToEvent('evt-hczz')"><span class="dot"></span>黄巢起义·朱温代唐</div>
+    </div>
+  </div>
+
+  <!-- 五代 -->
+  <div class="nav-group">
+    <div class="nav-group-title" onclick="toggleGroup(this)">
+      <span>【卷三十九至四十二】五代十国</span><span class="arrow">▸</span>
+    </div>
+    <div class="nav-items">
+      <div class="nav-item" onclick="scrollToEvent('evt-wdhw')"><span class="dot"></span>后梁·后唐</div>
+      <div class="nav-item" onclick="scrollToEvent('evt-wdhj')"><span class="dot"></span>后晋·割让燕云</div>
+      <div class="nav-item" onclick="scrollToEvent('evt-wdhs')"><span class="dot"></span>后汉·后周·柴荣</div>
+    </div>
+  </div>
+</nav>
+
+<!-- Toggle Button -->
+<button class="sidebar-toggle" id="sidebarToggle" onclick="toggleSidebar()">☰</button>
+
+<div class="main" id="main">
+
+  <!-- Search -->
+  <div class="search-bar">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="searchInput" placeholder="搜索事件、人物、地点……" oninput="doSearch(this.value)">
+  </div>
+
+  <section class="era-section" id="era-wzqk">
+    <div class="era-header">
+      <h2>卷一 · 战国开端 · 秦的崛起</h2>
+      <div class="era-meta">前403年 — 前221年 · 资治通鉴卷一至卷八</div>
+    </div>
+
+<div class="event-card" id="evt-sjfy">
+      <div class="event-header" onclick="toggleCard(this)">
+        <div class="event-icon" style="background:rgba(74,122,185,.15);color:var(--blue2)">⚔</div>
+        <div class="event-info">
+          <h3>三家分晋 — 春秋终结、战国开端</h3>
+          <div class="event-meta">
+            <span>前403年</span>
+            <span>晋阳·绛都</span>
+            <span>韩·赵·魏·智伯</span>
+            <span>通鉴卷一</span>
+          </div>
+        </div>
+        <span class="expand-icon">▼</span>
+      </div>
+      <div class="event-body">
+        <div class="event-body-inner">
+          <div class="tags">
+            <span class="tag time">周威烈王二十三年(前403)</span>
+            <span class="tag place">晋（今山西）</span>
+            <span class="tag person">韩虔</span>
+            <span class="tag person">赵籍</span>
+            <span class="tag person">魏斯</span>
+            <span class="tag person">智伯瑶（yáo）</span>
+            <span class="tag event">礼崩乐坏</span>
+          </div>
+
+          <div class="tabs">
+            <div class="tab-btn active" onclick="switchTab(this,'sjfy-1')">纪事本末</div>
+            <div class="tab-btn" onclick="switchTab(this,'sjfy-2')">通鉴原文</div>
+            <div class="tab-btn" onclick="switchTab(this,'sjfy-3')">王夫之论</div>
+          </div>
+
+          <div class="tab-panel active" id="sjfy-1">
+            <div class="passage blue">
+              <span class="label">纪事本末始末</span>
+              <p><strong>智伯索地：</strong>晋国智伯瑶向韩、魏索地，韩康子、魏桓子惧而与之。又向赵襄子索地，赵不许。智伯率韩、魏攻赵于晋阳。</p>
+              <p style="margin-top:.8rem"><strong>晋阳之战：</strong>三家围晋阳，引汾水灌城。城中"悬釜而炊，易子而食"，赵氏坚守不降。赵襄子遣张孟谈暗中联络韩、魏。</p>
+              <p style="margin-top:.8rem"><strong>三家灭智：</strong>韩、魏反戈，与赵联合攻智伯。前453年，智伯败亡，其地被三家瓜分。此后晋国公室名存实亡。</p>
+              <p style="margin-top:.8rem"><strong>正式分晋：</strong>前403年，周威烈王正式册封韩虔、赵籍、魏斯为诸侯，三家分晋获天子认可，《资治通鉴》以此为开篇。</p>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="sjfy-2">
+            <div class="passage">
+              <span class="label">资治通鉴 · 卷一 · 周纪一</span>
+              <p>"初命晋大（dà）夫（fū）魏斯、赵籍、韩虔为诸侯。"</p>
+              <p style="margin-top:.6rem">臣光曰："臣闻天子之职莫大于礼，礼莫大于分，分莫大于名。何谓礼？纪纲是也。何谓分？君臣是也。何谓名？公、侯、卿、大夫是也。"</p>
+              <p class="source">——资治通鉴卷一 · 周纪一 · 周威烈王二十三年</p>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="sjfy-3">
+            <div class="wf-box">
+              <div class="wf-title">王夫之《读通鉴论》卷一</div>
+              <div class="wf-text">
+                <p>三家分晋，天下之大变也。夫晋之分，非一日之故矣。自六卿擅政，公室卑弱，其势已成。周天子不能讨，反从而命之，是天子自弃其礼也。</p>
+                <p style="margin-top:.6rem">司马光以三家分晋为《通鉴》之始，其意深矣。盖天下之乱，始于名分之不正。天子不能守其分，而命诸侯之臣为诸侯，是礼之大坏也。由此观之，<strong>名分者，治天下之大本也</strong>。</p>
+                <p style="margin-top:.6rem">然王夫之亦指出：周之失天下，非独在分晋一事。自幽、厉以来，德政不修，诸侯离心久矣。分晋者，积渐之势使然，非一朝一夕之故。<strong>治国者当防微杜渐，不可使权臣坐大</strong>。</p>
+              </div>
+              <div class="wf-ref">——《读通鉴论》卷一 · 论名分与礼制</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<div class="event-card" id="evt-jssb">
+      <div class="event-header" onclick="toggleCard(this)">
+        <div class="event-icon" style="background:rgba(185,74,74,.15);color:var(--red2)">📜</div>
+        <div class="event-info">
+          <h3>秦孝公求贤 · 商鞅变法</h3>
+          <div class="event-meta">
+            <span>前359年—前338年</span>
+            <span>咸阳</span>
+            <span>秦孝公·商鞅·甘龙·杜挚</span>
+            <span>通鉴卷二</span>
+          </div>
+        </div>
+        <span class="expand-icon">▼</span>
+      </div>
+      <div class="event-body">
+        <div class="event-body-inner">
+          <div class="tags">
+            <span class="tag time">秦孝公三年起(前359)</span>
+            <span class="tag place">秦都栎阳·咸阳</span>
+            <span class="tag person">秦孝公</span>
+            <span class="tag person">商鞅(卫鞅)</span>
+            <span class="tag person">甘龙</span>
+            <span class="tag event">变法图强</span>
+          </div>
+
+          <div class="tabs">
+            <div class="tab-btn active" onclick="switchTab(this,'sy-1')">纪事本末</div>
+            <div class="tab-btn" onclick="switchTab(this,'sy-2')">通鉴原文</div>
+            <div class="tab-btn" onclick="switchTab(this,'sy-3')">王夫之论</div>
+          </div>
+
+          <div class="tab-panel active" id="sy-1">
+            <div class="passage red">
+              <span class="label">纪事本末始末</span>
+              <p><strong>求贤令：</strong>秦孝公即位，痛感秦被诸侯疏远，下令求贤："宾客群臣有能出奇计强秦者，吾且尊官，与之分土。"卫鞅闻之入秦。</p>
+              <p style="margin-top:.8rem"><strong>舌战群臣：</strong>孝公三年（前359年），卫鞅欲变法。甘龙、杜挚反对："法古无过，循礼无邪。"卫鞅曰："治世不一道，便国不法古。"孝公从之。</p>
+              <p style="margin-top:.8rem"><strong>第一次变法（前356年）：</strong>令民为什伍而相收司连坐；告奸者与斩敌首同赏；匿奸者与降敌同罚；民有二男以上不分异者倍其赋；有军功者各以率受上爵；宗室非有军功论不得为属籍。</p>
+              <p style="margin-top:.8rem"><strong>第二次变法（前350年）：</strong>废井田，开阡陌；推行县制；统一度量衡；迁都咸阳。"行之十年，秦民大悦，道不拾遗，山无盗贼，民勇于公战，怯于私斗。"</p>
+              <p style="margin-top:.8rem"><strong>商鞅之死：</strong>孝公卒，惠文王立。公子虔之徒告商鞅欲反。鞅出逃，无人敢收留。最终被车裂，灭族。然"秦法未败"。</p>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="sy-2">
+            <div class="passage">
+              <span class="label">资治通鉴 · 卷二</span>
+              <p>"卫鞅欲变法，秦人不悦。卫鞅言于秦孝公曰：'夫民不可与虑始，而可与乐成。论至德者不和于俗，成大功者不谋于众。是以圣人苟可以强国，不法其故。'"</p>
+              <p style="margin-top:.6rem">"令既具未布，恐民之不信，乃立三丈之木于国都南门，募民有能徙置北门者予十金。民怪之，莫敢徙。复曰：'能徙者予五十金。'有一人徙之，辄予五十金，以明不欺。"</p>
+              <p class="source">——资治通鉴卷二 · 周纪二</p>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="sy-3">
+            <div class="wf-box">
+              <div class="wf-title">王夫之《读通鉴论》卷二 · 论商鞅</div>
+              <div class="wf-text">
+                <p>商鞅变法，<strong>强国之术也，非治天下之道也</strong>。其法严而寡恩，赏罚必信而德义不修。使秦人勇于公战，而不知礼义廉耻。此其所以一传而亡也。</p>
+                <p style="margin-top:.6rem">夫立木以示信，此小信也，非大信也。大信者，上下相孚，礼义相维，不待赏罚而民自化。商鞅以刑名法术治秦，使民畏刑而不畏义，趋利而不趋善。其效虽速，其弊亦深。</p>
+                <p style="margin-top:.6rem">然秦之强，实始于鞅。使非孝公用鞅，秦不过西方一强国耳，何能兼并天下？故<strong>变法者，因时而变，不可泥古</strong>。但商鞅但知变法之利，不知守法之道。法可变也，仁义不可变也。变法而不失仁义，此圣人之治也。</p>
+                <p style="margin-top:.6rem">商鞅之死，亦其法之弊也。刻薄寡恩之臣，岂能善终？<strong>为政者当以宽济猛，不可以猛为政</strong>。</p>
+              </div>
+              <div class="wf-ref">——《读通鉴论》卷二 · 商鞅变法之利弊</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<div class="event-card" id="evt-hzcs">
+      <div class="event-header" onclick="toggleCard(this)">
+        <div class="event-icon" style="background:rgba(74,154,106,.15);color:var(--green2)">🌐</div>
+        <div class="event-info">
+          <h3>合纵连横 · 苏秦张仪</h3>
+          <div class="event-meta">
+            <span>前333年—前241年</span>
+            <span>六国·秦</span>
+            <span>苏秦·张仪·公孙衍</span>
+            <span>通鉴卷二至卷四</span>
+          </div>
+        </div>
+        <span class="expand-icon">▼</span>
+      </div>
+      <div class="event-body">
+        <div class="event-body-inner">
+          <div class="tags">
+            <span class="tag time">前333年—前241年</span>
+            <span class="tag place">齐·楚·燕·韩·赵·魏·秦</span>
+            <span class="tag person">苏秦</span>
+            <span class="tag person">张仪</span>
+            <span class="tag person">公孙衍</span>
+            <span class="tag event">纵横之争</span>
+          </div>
+
+          <div class="tabs">
+            <div class="tab-btn active" onclick="switchTab(this,'hz-1')">纪事本末</div>
+            <div class="tab-btn" onclick="switchTab(this,'hz-2')">通鉴原文</div>
+            <div class="tab-btn" onclick="switchTab(this,'hz-3')">王夫之论</div>
+          </div>
+
+          <div class="tab-panel active" id="hz-1">
+            <div class="passage green">
+              <span class="label">纪事本末始末</span>
+              <p><strong>合纵：</strong>苏秦游说六国合纵抗秦，配六国相印。赵肃侯封苏秦为武安君，约从亲。然六国各怀私心，合纵屡合屡散。</p>
+              <p style="margin-top:.8rem"><strong>连横：</strong>张仪入秦，以连横之策破合纵。先欺楚怀王，许以商於六百里地，楚与齐绝交后仅予六里。楚怀王怒伐秦大败。后又游说各国事秦。</p>
+              <p style="margin-top:.8rem"><strong>结果：</strong>合纵始终未能持久。各国互相猜忌，秦以远交近攻之策逐一瓦解。六国之势愈弱，秦之势愈强。</p>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="hz-2">
+            <div class="passage">
+              <span class="label">资治通鉴 · 卷三</span>
+              <p>"苏秦说赵肃侯曰：'当今之时，山东之建国莫强于赵。秦之所害亦莫如赵。然而秦不敢举兵伐赵者，何也？畏韩、魏之议其后也。'"</p>
+              <p class="source">——资治通鉴卷三</p>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="hz-3">
+            <div class="wf-box">
+              <div class="wf-title">王夫之《读通鉴论》卷二 · 论纵横</div>
+              <div class="wf-text">
+                <p>合纵之不成，<strong>非秦之能败之，六国自败之也</strong>。夫合纵者，以利合也，非以义合也。以利合者，利尽则散；以义合者，义存则固。六国之合，各怀自利之心，秦以利诱之，以势胁之，则各怀观望，终不能一。</p>
+                <p style="margin-top:.6rem">张仪之欺楚，楚之愚也。以六百里地而弃齐之好，此何异于自断臂膀？<strong>国之外交，不可恃信于小人</strong>。楚怀王贪利忘义，终为天下笑。张仪虽诈，亦楚自取其辱也。</p>
+                <p style="margin-top:.6rem">纵横之术，<strong>末世之术也</strong>。圣人治天下，以德不以术，以诚不以诈。战国之世，辩士横行，利口覆国。苏秦、张仪之流，<strong>但知取一时之效，不知贻万世之祸</strong>。</p>
+              </div>
+              <div class="wf-ref">——《读通鉴论》卷二 · 论合纵连横之失</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<div class="event-card" id="evt-ylpzh">
+      <div class="event-header" onclick="toggleCard(this)">
+        <div class="event-icon" style="background:rgba(74,154,106,.15);color:var(--green2)">⚔</div>
+        <div class="event-info">
+          <h3>乐毅破齐·田单复国</h3>
+          <div class="event-meta"><span>前284年—前279年</span><span>临淄·即墨</span><span>乐毅·田单·燕昭王</span><span>通鉴卷四</span></div>
+        </div>
+        <span class="expand-icon">▼</span>
+      </div>
+      <div class="event-body"><div class="event-body-inner">
+        <div class="tabs">
+          <div class="tab-btn active" onclick="switchTab(this,'yl-1')">纪事本末</div>
+          <div class="tab-btn" onclick="switchTab(this,'yl-2')">通鉴原文</div>
+          <div class="tab-btn" onclick="switchTab(this,'yl-3')">王夫之论</div>
+        </div>
+        <div class="tab-panel active" id="yl-1">
+          <div class="passage green"><span class="label">纪事本末始末</span>
+            <p><strong>燕昭王求贤：</strong>燕王哙（kuài）禅让子之，国内大乱。齐趁机伐燕。燕昭王即位后，卑身厚币以招贤者，乐毅自魏往，剧辛自赵往。</p>
+            <p style="margin-top:.8rem"><strong>五国伐齐（前284年）：</strong>齐湣（mǐn）王骄暴灭宋，诸侯患之。燕联合赵、魏、秦、韩五国伐齐，乐毅为上将军，大破齐军于济西。下齐七十余城，皆为郡县。独莒（jǔ）、即墨未下。</p>
+            <p style="margin-top:.8rem"><strong>田单复国：</strong>即墨守将田单用反间计使燕换将骑劫。以"火牛阵"大破燕军——收城中千余牛，束兵刃于角，灌脂束苇于尾，夜纵牛出击。"牛尾热，怒而奔燕军。燕军大惊，视牛皆龙文，所触尽死伤。"乘胜收复七十余城，齐国复立。</p>
+          </div>
+        </div>
+        <div class="tab-panel" id="yl-2">
+          <div class="passage"><span class="label">资治通鉴 · 卷四</span>
+            <p>"乐毅闻昼邑人王蠋（zhú）贤，令军中环昼邑三十里无入。使人请蠋，蠋不往。燕人曰：'不来，吾且屠昼邑。'蠋曰：'忠臣不事二君，烈女不更二夫。国破君亡，吾不能存，而又欲劫之以兵，吾与其不义而生，不若遂烹。'乃经死。"</p>
+            <p style="margin-top:.6rem">"田单乃收城中得千余牛，为绛（jiàng）缯（zēng）衣，画以五彩龙文，束兵刃于其角，而灌脂束苇于其尾，烧其端。凿城数十穴，夜纵牛，壮士五千人随其后。牛尾热，怒而奔燕军。燕军大惊，视牛皆龙文，所触尽死伤。五千人因衔枚击之，城中鼓噪从之，老弱皆击铜器为声，声动天地。燕军大骇，败走。"</p>
+            <p class="source">——资治通鉴卷四 · 周赧王三十六年</p>
+          </div>
+        </div>
+        <div class="tab-panel" id="yl-3">
+          <div class="wf-box"><div class="wf-title">王夫之《读通鉴论》卷三 · 论乐毅田单</div>
+            <div class="wf-text">
+              <p>乐毅之下齐也，以仁义行之。下七十城而不戮一人，围莒、即墨而不急攻。此欲以德服齐人也。然毅之失在于<strong>缓而不决</strong>，兵贵神速，久则生变。毅围二城五年而不下，致燕昭王崩，惠王以骑劫代之。此毅之失策也。</p>
+              <p style="margin-top:.6rem">田单以即墨孤城复齐，<strong>智勇兼备</strong>。火牛阵之奇，千古罕见。然齐虽复，元气已伤，不复为秦之对手矣。</p>
+            </div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+<div class="event-card" id="evt-qjbz">
+      <div class="event-header" onclick="toggleCard(this)">
+        <div class="event-icon" style="background:rgba(185,74,74,.15);color:var(--red2)">🏰</div>
+        <div class="event-info">
+          <h3>秦灭六国 · 天下一统</h3>
+          <div class="event-meta">
+            <span>前230年—前221年</span>
+            <span>六国故地→咸阳</span>
+            <span>秦王政（zhèng）·王翦·李斯·韩非</span>
+            <span>通鉴卷六至卷七</span>
+          </div>
+        </div>
+        <span class="expand-icon">▼</span>
+      </div>
+      <div class="event-body">
+        <div class="event-body-inner">
+          <div class="tags">
+            <span class="tag time">前230年灭韩—前221年灭齐</span>
+            <span class="tag place">咸阳</span>
+            <span class="tag person">秦始皇嬴政</span>
+            <span class="tag person">王翦</span>
+            <span class="tag person">李斯</span>
+            <span class="tag person">韩非</span>
+            <span class="tag event">统一天下</span>
+          </div>
+
+          <div class="tabs">
+            <div class="tab-btn active" onclick="switchTab(this,'qjbz-1')">纪事本末</div>
+            <div class="tab-btn" onclick="switchTab(this,'qjbz-2')">通鉴原文</div>
+            <div class="tab-btn" onclick="switchTab(this,'qjbz-3')">王夫之论</div>
+          </div>
+
+          <div class="tab-panel active" id="qjbz-1">
+            <div class="passage red">
+              <span class="label">纪事本末始末 · 灭国次序</span>
+              <p><strong>灭韩（前230年）：</strong>秦内史腾攻韩，虏韩王安，以其地置颍川郡。韩亡。</p>
+              <p style="margin-top:.5rem"><strong>灭赵（前228年）：</strong>王翦攻赵，赵王迁降。赵公子嘉奔代，自立为代王。</p>
+              <p style="margin-top:.5rem"><strong>灭魏（前225年）：</strong>王贲引黄河水灌大梁，城坏，魏王假降。魏亡。</p>
+              <p style="margin-top:.5rem"><strong>灭楚（前223年）：</strong>王翦率六十万大军伐楚。楚将项燕败死，楚亡。</p>
+              <p style="margin-top:.5rem"><strong>灭燕（前222年）：</strong>王贲攻辽东，虏燕王喜。燕亡。</p>
+              <p style="margin-top:.5rem"><strong>灭齐（前221年）：</strong>王贲自燕南下攻齐，齐王建不战而降。齐亡。至此，六国皆灭，天下一统。</p>
+              <p style="margin-top:.8rem"><strong>秦制：</strong>秦王政自称"始皇帝"，废分封、行郡县，书同文、车同轨、统一度量衡。建立中国第一个大一统帝国。</p>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="qjbz-2">
+            <div class="passage">
+              <span class="label">资治通鉴 · 卷七</span>
+              <p>"秦王初并天下，令丞相、御史曰：'……寡人以眇眇之身，兴兵诛暴乱，赖宗庙之灵，六王咸伏其辜，天下大定。今名号不更，无以称成功，传后世。其议帝号。'"</p>
+              <p class="source">——资治通鉴卷七 · 秦纪二 · 始皇帝二十六年</p>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="qjbz-3">
+            <div class="wf-box">
+              <div class="wf-title">王夫之《读通鉴论》卷一 · 论秦之统一</div>
+              <div class="wf-text">
+                <p>秦之并天下，<strong>势也，非一人之力也</strong>。自孝公用商鞅以来，数世经营，积势已成。始皇不过承其余烈耳。</p>
+                <p style="margin-top:.6rem">然秦之失天下，亦其法之必然。郡县之制，便于一时，而不利于久远。秦以法术治天下，<strong>废先王之礼乐教化</strong>，使民但知法令，不知仁义。天下初定，人心未服，而秦以严刑峻法治之，是<strong>以火救火也</strong>。</p>
+                <p style="margin-top:.6rem">夫天下一统，圣人之所乐见也。然一统之后，当以<strong>文德绥之</strong>，不可徒以武力制之。秦始皇不知此义，焚书坑儒，以愚黔首。其亡也，不亦宜乎？</p>
+              </div>
+              <div class="wf-ref">——《读通鉴论》卷一 · 论秦政之得失</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <section class="era-section" id="era-qin">
+    <div class="era-header">
+      <h2>卷二 · 秦之兴亡</h2>
+      <div class="era-meta">前221年 — 前207年 · 资治通鉴卷七至卷九</div>
+    </div>
+
+<div class="event-card" id="evt-hnxf">
+      <div class="event-header" onclick="toggleCard(this)">
+        <div class="event-icon" style="background:rgba(185,74,74,.15);color:var(--red2)">🔥</div>
+        <div class="event-info">
+          <h3>豪杰亡秦 · 陈胜吴广起义</h3>
+          <div class="event-meta">
+            <span>前209年—前207年</span>
+            <span>大泽乡·陈·咸阳</span>
+            <span>陈胜·吴广·项羽·刘邦·赵高</span>
+            <span>通鉴卷七至卷八</span>
+          </div>
+        </div>
+        <span class="expand-icon">▼</span>
+      </div>
+      <div class="event-body">
+        <div class="event-body-inner">
+          <div class="tabs">
+            <div class="tab-btn active" onclick="switchTab(this,'hnxf-1')">纪事本末</div>
+            <div class="tab-btn" onclick="switchTab(this,'hnxf-2')">通鉴原文</div>
+            <div class="tab-btn" onclick="switchTab(this,'hnxf-3')">王夫之论</div>
+          </div>
+
+          <div class="tab-panel active" id="hnxf-1">
+            <div class="passage red">
+              <span class="label">纪事本末始末</span>
+              <p><strong>大泽乡起义（前209年）：</strong>陈胜、吴广等九百人戍渔阳，遇大雨失期。按秦法当斩。陈胜曰："天下苦秦久矣。"乃诈称公子扶苏、项燕，揭竿而起。</p>
+              <p style="margin-top:.8rem"><strong>天下响应：</strong>陈胜称王，号"张楚"。各地豪杰纷纷响应：项梁、项羽起于吴，刘邦起于沛，田儋起于齐。秦之郡县守令多被杀。</p>
+              <p style="margin-top:.8rem"><strong>陈胜败亡：</strong>陈胜称王后骄奢，故人来访竟以"妄言"诛之。部将离心，秦将章邯率骊山刑徒反攻。陈胜败退，被车夫庄贾所杀。</p>
+              <p style="margin-top:.8rem"><strong>秦之覆灭：</strong>章邯虽屡胜，终败于项羽巨鹿之战。赵高杀二世，立子婴。子婴杀赵高。刘邦先入关中，秦亡。</p>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="hnxf-2">
+            <div class="passage">
+              <span class="label">资治通鉴 · 卷七</span>
+              <p>"陈胜曰：'天下苦秦久矣！吾闻二世少子也，不当立，当立者乃公子扶苏。扶苏以数谏故，上使外将兵。今或闻无罪，二世杀之。百姓多闻其贤，未知其死。'"</p>
+              <p class="source">——资治通鉴卷七 · 秦纪二</p>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="hnxf-3">
+            <div class="wf-box">
+              <div class="wf-title">王夫之《读通鉴论》卷一 · 论秦亡</div>
+              <div class="wf-text">
+                <p>秦之亡，<strong>亡于法而亡于不仁也</strong>。陈胜、吴广之起，非有大志也，失期当斩，不得已而反耳。使秦法稍宽，何至于此？</p>
+                <p style="margin-top:.6rem">夫天下苦秦久矣。焚书坑儒，以愚黔首；严刑峻法，以威天下。修长城，建阿房（ē páng），征百越，戍五岭。<strong>民力已竭，而暴不止</strong>。陈胜一呼，天下云从响应，非陈胜之能也，秦政之失也。</p>
+                <p style="margin-top:.6rem"><strong>为政者不可以法胜天下，当以德服天下</strong>。秦以法术亡，后世当引以为鉴。汉高祖入关，约法三章，除去秦苛法，此其所以得天下也。</p>
+              </div>
+              <div class="wf-ref">——《读通鉴论》卷一 · 秦之所以亡</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<div class="event-card" id="evt-sszh">
+      <div class="event-header" onclick="toggleCard(this)">
+        <div class="event-icon" style="background:rgba(185,74,74,.15);color:var(--red2)">👤</div>
+        <div class="event-info">
+          <h3>赵高篡秦·指鹿为马</h3>
+          <div class="event-meta"><span>前210年—前207年</span><span>咸阳</span><span>赵高·李斯·秦二世·子婴</span><span>通鉴卷八至卷九</span></div>
+        </div>
+        <span class="expand-icon">▼</span>
+      </div>
+      <div class="event-body"><div class="event-body-inner">
+        <div class="tabs">
+          <div class="tab-btn active" onclick="switchTab(this,'zg-1')">纪事本末</div>
+          <div class="tab-btn" onclick="switchTab(this,'zg-2')">通鉴原文</div>
+          <div class="tab-btn" onclick="switchTab(this,'zg-3')">王夫之论</div>
+        </div>
+        <div class="tab-panel active" id="zg-1">
+          <div class="passage red"><span class="label">纪事本末始末</span>
+            <p><strong>沙丘之谋：</strong>始皇崩于沙丘（前210年）。赵高与李斯合谋，矫诏赐死公子扶苏，立胡亥为帝。赵高为郎中令。</p>
+            <p style="margin-top:.8rem"><strong>谮（zèn）杀李斯：</strong>赵高劝二世深居宫中，"以法诛群臣"。又谮杀李斯，腰斩咸阳市。赵高为丞相，"事无大小辄决于高"。</p>
+            <p style="margin-top:.8rem"><strong>指鹿为马：</strong>赵高献鹿于二世曰"马也"。二世笑曰"丞相误邪？谓鹿为马。"问左右，或默，或言马以阿顺。言鹿者皆被治罪。自此群臣莫敢言赵高之过。</p>
+            <p style="margin-top:.8rem"><strong>秦亡：</strong>赵高杀二世立子婴，子婴即位杀赵高。刘邦入关，子婴降，秦亡。</p>
+          </div>
+        </div>
+        <div class="tab-panel" id="zg-2">
+          <div class="passage"><span class="label">资治通鉴 · 卷八至卷九</span>
+            <p>"高乃与公子胡亥、丞相斯阴谋，去始皇所封书赐公子扶苏者，而更诈为丞相斯受始皇遗诏，立胡亥为太子。更为书赐扶苏、蒙恬，数以罪，赐死。"</p>
+            <p style="margin-top:.6rem">"高持鹿献于二世，曰：'马也。'二世笑曰：'丞相误邪？谓鹿为马。'问左右，左右或默，或言马以阿顺赵高，或言鹿者。高因阴中诸言鹿者以法。后群臣皆畏高。"</p>
+            <p class="source">——资治通鉴卷八 · 秦纪三</p>
+          </div>
+        </div>
+        <div class="tab-panel" id="zg-3">
+          <div class="wf-box"><div class="wf-title">王夫之《读通鉴论》卷一 · 论赵高</div>
+            <div class="wf-text">
+              <p>赵高之祸，秦法之弊使然。秦以法术治天下，使臣下但知畏法不知忠义。指鹿为马，以权势颠倒是非，后世权臣效之，祸乱无穷。</p>
+              <p style="margin-top:.6rem">李斯之死亦自取——助始皇焚书坑儒，又助赵高矫诏。以小人之心行小人之事，终为赵高所害。</p>
+            </div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+  </section>
+
+  <section class="era-section" id="era-han">
+    <div class="era-header">
+      <h2>卷三至卷八 · 两汉四百年</h2>
+      <div class="era-meta">前206年 — 220年 · 资治通鉴卷九至卷六十八</div>
+    </div>
+
+<div class="event-card" id="evt-chzz">
+      <div class="event-header" onclick="toggleCard(this)">
+        <div class="event-icon" style="background:rgba(201,168,76,.15);color:var(--gold2)">🐉</div>
+        <div class="event-info">
+          <h3>楚汉之争 · 刘邦项羽逐鹿天下</h3>
+          <div class="event-meta">
+            <span>前206年—前202年</span>
+            <span>关中·彭城·垓（gāi）下</span>
+            <span>刘邦·项羽·韩信·张良·萧何·范增</span>
+            <span>通鉴卷九至卷十一</span>
+          </div>
+        </div>
+        <span class="expand-icon">▼</span>
+      </div>
+      <div class="event-body">
+        <div class="event-body-inner">
+          <div class="tabs">
+            <div class="tab-btn active" onclick="switchTab(this,'chzz-1')">纪事本末</div>
+            <div class="tab-btn" onclick="switchTab(this,'chzz-2')">通鉴原文</div>
+            <div class="tab-btn" onclick="switchTab(this,'chzz-3')">王夫之论</div>
+          </div>
+
+          <div class="tab-panel active" id="chzz-1">
+            <div class="passage gold">
+              <span class="label">纪事本末始末</span>
+              <p><strong>鸿门宴（前206年）：</strong>刘邦先入关中，约法三章，秋毫无犯。项羽大怒，欲击之。刘邦赴鸿门宴谢罪。范增令项庄舞剑，欲杀刘邦。项伯、张良护之，刘邦借故逃脱。</p>
+              <p style="margin-top:.8rem"><strong>分封天下：</strong>项羽自立为西楚霸王，分封十八路诸侯。封刘邦为汉王，辖巴蜀之地。项羽烧秦宫室，火三月不灭。</p>
+              <p style="margin-top:.8rem"><strong>楚汉相争：</strong>刘邦用韩信计，明修栈道暗渡陈仓。彭城之战，项羽以三万人大破刘邦五十六万联军。此后双方对峙于荥阳、成皋之间。</p>
+              <p style="margin-top:.8rem"><strong>垓下之围（前202年）：</strong>韩信设十面埋伏。四面楚歌，项羽军心瓦解。项羽突围至乌江，自觉无颜见江东父老，自刎而死。刘邦即皇帝位，建立汉朝。</p>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="chzz-2">
+            <div class="passage">
+              <span class="label">资治通鉴 · 卷十一</span>
+              <p>"项王军壁垓下，兵少食尽。汉军及诸侯兵围之数重。夜闻汉军四面皆楚歌，项王乃大惊曰：'汉皆已得楚乎？是何楚人之多也！'则夜起，饮帐中。有美人名虞，常幸从；骏马名骓，常骑之。于是项王乃悲歌慷慨，自为诗曰：'力拔山兮气盖世，时不利兮骓不逝。骓不逝兮可奈何，虞兮虞兮奈若何！'歌数阙，美人和之。项王泣数行下，左右皆泣，莫能仰视。"</p>
+              <p class="source">——资治通鉴卷十一 · 汉纪三</p>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="chzz-3">
+            <div class="wf-box">
+              <div class="wf-title">王夫之《读通鉴论》卷二 · 论楚汉成败</div>
+              <div class="wf-text">
+                <p>项羽之败，非战之罪也。<strong>羽之失天下，在其不知用人也</strong>。韩信、陈平、黥布皆楚之臣，卒归于汉。范增一谋士耳，羽不能用，至于疽发背死。陈平曰："项王所任爱，非诸项即妻之昆弟，虽有奇士不能用。"此诚知言也。</p>
+                <p style="margin-top:.6rem">高祖之得天下，<strong>在能用人也</strong>。高祖自言：运筹帷幄不如张良，镇国家抚百姓不如萧何，战必胜攻必取不如韩信。三者皆人杰，吾能用之。此所以取天下也。</p>
+                <p style="margin-top:.6rem">然高祖之用人，<strong>以术不以诚</strong>。天下既定，韩信、彭越、黥布相继被诛。"飞鸟尽良弓藏，狡兔死走狗烹"。此高祖之薄德也。比之光武中兴，功臣皆得善终，高祖不如远矣。</p>
+                <p style="margin-top:.6rem">项羽有妇人之仁，而无帝王之量。鸿门不杀沛公，此所谓妇人之仁也。及败走乌江，曰"无面目见江东父老"，此匹夫之勇也。<strong>成大事者，能屈能伸</strong>。羽不能忍一时之辱，而欲成万世之业，难矣。</p>
+              </div>
+              <div class="wf-ref">——《读通鉴论》卷二 · 论刘项成败之由</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<div class="event-card" id="evt-hdcl">
+      <div class="event-header" onclick="toggleCard(this)">
+        <div class="event-icon" style="background:rgba(185,74,74,.15);color:var(--red2)">👑</div>
+        <div class="event-info">
+          <h3>吕后专政·诸吕之乱</h3>
+          <div class="event-meta"><span>前195年—前180年</span><span>长安</span><span>吕后·惠帝·周勃·陈平</span><span>通鉴卷十二至卷十三</span></div>
+        </div>
+        <span class="expand-icon">▼</span>
+      </div>
+      <div class="event-body"><div class="event-body-inner">
+        <div class="tabs">
+          <div class="tab-btn active" onclick="switchTab(this,'lh-1')">纪事本末</div>
+          <div class="tab-btn" onclick="switchTab(this,'lh-2')">通鉴原文</div>
+          <div class="tab-btn" onclick="switchTab(this,'lh-3')">王夫之论</div>
+        </div>
+        <div class="tab-panel active" id="lh-1">
+          <div class="passage gold"><span class="label">纪事本末始末</span>
+            <p><strong>吕后临朝：</strong>高祖崩，惠帝即位年十七。吕后为太后临朝称制。惠帝仁弱不听政。吕后专决大事。</p>
+            <p style="margin-top:.8rem"><strong>残害戚夫人：</strong>吕后断戚夫人手足，去眼熏耳，饮喑（yīn）药，使居厕中，命曰"人彘（zhì）"。惠帝见之大哭："此非人所为。臣为太后子，终不能治天下。"</p>
+            <p style="margin-top:.8rem"><strong>封诸吕：</strong>吕后大封吕氏子弟为王侯。吕产为梁王，吕禄为赵王。"诸吕擅权，几危社稷。"</p>
+            <p style="margin-top:.8rem"><strong>诛诸吕（前180年）：</strong>吕后崩，周勃、陈平联合刘章等诛灭诸吕。周勃入北军令曰"为吕氏右袒，为刘氏左袒"，军中皆左袒。迎立代王刘恒为文帝。</p>
+          </div>
+        </div>
+        <div class="tab-panel" id="lh-2">
+          <div class="passage"><span class="label">资治通鉴 · 卷十二至十三</span>
+            <p>"太后遂断戚夫人手足，去眼，辉耳，饮喑药，使居厕中，命曰'人彘'。居数日，乃召帝观人彘。帝见，问知其戚夫人，乃大哭，因病，岁余不能起。"</p>
+            <p style="margin-top:.6rem">"太后称制，议欲立诸吕为王。问右丞相陵，陵曰：'高帝刑白马盟曰：非刘氏而王，天下共击之。今王吕氏，非约也。'"</p>
+            <p style="margin-top:.6rem">"太尉绛侯周勃入北军，行令军中曰：'为吕氏右袒，为刘氏左袒。'军中皆左袒。"</p>
+            <p class="source">——资治通鉴卷十二至十三 · 汉纪四至五</p>
+          </div>
+        </div>
+        <div class="tab-panel" id="lh-3">
+          <div class="wf-box"><div class="wf-title">王夫之《读通鉴论》卷三 · 论吕后</div>
+            <div class="wf-text">
+              <p>吕后之祸，高祖之失也。知吕后刚毅而不早为之所。女主临朝之弊始于吕后，后世外戚之祸皆源于此。</p>
+              <p style="margin-top:.6rem">然吕后临朝十五年，天下无大乱，"民务稼穑，衣食滋殖"。其才不可没，然残忍好杀不可为训。</p>
+            </div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+<div class="event-card" id="evt-hxzz">
+      <div class="event-header" onclick="toggleCard(this)">
+        <div class="event-icon" style="background:rgba(74,122,185,.15);color:var(--blue2)">👑</div>
+        <div class="event-info">
+          <h3>霍光辅政 · 昭宣中兴</h3>
+          <div class="event-meta">
+            <span>前87年—前68年</span>
+            <span>长安</span>
+            <span>霍光·汉昭帝·汉宣帝·上官桀（jié）</span>
+            <span>通鉴卷二十三至卷二十五</span>
+          </div>
+        </div>
+        <span class="expand-icon">▼</span>
+      </div>
+      <div class="event-body">
+        <div class="event-body-inner">
+          <div class="tabs">
+            <div class="tab-btn active" onclick="switchTab(this,'hgzz-1')">纪事本末</div>
+            <div class="tab-btn" onclick="switchTab(this,'hgzz-2')">通鉴原文</div>
+            <div class="tab-btn" onclick="switchTab(this,'hgzz-3')">王夫之论</div>
+          </div>
+
+          <div class="tab-panel active" id="hgzz-1">
+            <div class="passage blue">
+              <span class="label">纪事本末始末</span>
+              <p><strong>受命辅政：</strong>武帝临终，以霍光为大司马大将军，与金日磾、上官桀、桑弘羊共辅少主。昭帝年仅八岁。</p>
+              <p style="margin-top:.8rem"><strong>挫败政变：</strong>上官桀与燕王旦勾结，欲杀霍光、废昭帝。霍光识破阴谋，诛上官桀等。昭帝亲政后仍信任霍光。</p>
+              <p style="margin-top:.8rem"><strong>废昌邑王：</strong>昭帝崩，无嗣。迎昌邑王刘贺即位。刘贺荒淫无道，二十七日即被霍光废黜。迎武帝曾孙刘病已（汉宣帝）即位。</p>
+              <p style="margin-top:.8rem"><strong>宣帝中兴：</strong>霍光继续辅政，"政自己出"。宣帝即位初，霍光权重震主。霍光死后，宣帝亲政，整顿吏治，轻徭薄赋，史称"昭宣中兴"。但霍氏家族后来以谋反被族诛。</p>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="hgzz-2">
+            <div class="passage">
+              <span class="label">资治通鉴 · 卷二十四</span>
+              <p>"光入，免冠顿首曰：'臣宁负王，不敢负社稷。'太后乃下诏废之。光执天子手，解其玺组，奉上太后，扶王下殿。"</p>
+              <p class="source">——资治通鉴卷二十四 · 废昌邑王</p>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="hgzz-3">
+            <div class="wf-box">
+              <div class="wf-title">王夫之《读通鉴论》卷四 · 论霍光</div>
+              <div class="wf-text">
+                <p>霍光辅政，<strong>忠于汉室者也，然权太重，威太盛</strong>。废立之际，虽曰忠臣，实同擅权。使后世权臣效之，以废立为名而行篡夺之实，谁复能禁之？</p>
+                <p style="margin-top:.6rem">霍光之忠，不可疑也。然其弊在于<strong>以一人之忠而开权臣之例</strong>。废昌邑王，固为社稷计。然自古权臣废立，始于霍光，极于王莽、曹操。故善为政者，不以一人之善而立非常之制。</p>
+                <p style="margin-top:.6rem">宣帝诛霍氏，亦势之必然也。霍氏权倾朝野，功高震主。宣帝虽念其功，<strong>不能不除其势</strong>。光武善待功臣，然光武之功臣未有如霍氏之专权者。此亦时势不同也。</p>
+              </div>
+              <div class="wf-ref">——《读通鉴论》卷四 · 论霍光之忠与权臣之弊</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<div class="event-card" id="evt-jwzz">
+      <div class="event-header" onclick="toggleCard(this)">
+        <div class="event-icon" style="background:rgba(74,154,106,.15);color:var(--green2)">☀</div>
+        <div class="event-info">
+          <h3>文景之治·汉武帝雄才大略</h3>
+          <div class="event-meta"><span>前180年—前87年</span><span>长安</span><span>文帝·景帝·武帝·晁错·董仲舒·卫青·霍去病</span><span>通鉴卷十三至卷二十二</span></div>
+        </div>
+        <span class="expand-icon">▼</span>
+      </div>
+      <div class="event-body"><div class="event-body-inner">
+        <div class="tabs">
+          <div class="tab-btn active" onclick="switchTab(this,'jw-1')">纪事本末</div>
+          <div class="tab-btn" onclick="switchTab(this,'jw-2')">通鉴原文</div>
+          <div class="tab-btn" onclick="switchTab(this,'jw-3')">王夫之论</div>
+        </div>
+        <div class="tab-panel active" id="jw-1">
+          <div class="passage green"><span class="label">纪事本末始末</span>
+            <p><strong>文帝之治：</strong>文帝节俭爱民，"宫室苑囿（yòu）车骑服御无所增益"。废肉刑，减赋税"三十而税一"。与匈奴和亲以安边境。"海内安宁，家给人足。"</p>
+            <p style="margin-top:.8rem"><strong>七国之乱（前154年）：</strong>景帝时晁错建议削藩。吴王刘濞（bì）联合楚、赵等七国叛乱。景帝杀晁错，叛军不退。周亚夫率军三月平叛。</p>
+            <p style="margin-top:.8rem"><strong>武帝雄才大略：</strong>罢黜百家独尊儒术。卫青、霍去病北击匈奴，"封狼居胥（xū）"。张骞出使西域。灭南越、朝鲜。开疆拓土，版图空前。</p>
+            <p style="margin-top:.8rem"><strong>轮台罪己：</strong>晚年穷兵黩武，"海内虚耗，户口减半"。下罪己诏："当今务在禁苛暴，止擅赋，力本农。"</p>
+          </div>
+        </div>
+        <div class="tab-panel" id="jw-2">
+          <div class="passage"><span class="label">资治通鉴 · 卷十五至二十二</span>
+            <p>"董仲舒对曰：'臣愚以为诸不在六艺之科、孔子之术者，皆绝其道，勿使并进。邪辟之说灭息，然后统纪可一而法度可明，民知所从矣。'"</p>
+            <p style="margin-top:.6rem">"诏曰：'当今务在禁苛暴，止擅赋，力本农，修马复令以补缺，毋乏武备而已。'"</p>
+            <p class="source">——资治通鉴卷十五至二十二</p>
+          </div>
+        </div>
+        <div class="tab-panel" id="jw-3">
+          <div class="wf-box"><div class="wf-title">王夫之《读通鉴论》卷三至四 · 论文景武帝</div>
+            <div class="wf-text">
+              <p>文景之治，与民休息之善政。无为者非不为也，以不扰为治也。武帝之才千古雄主，然穷兵黩武用民太甚。晚年能下罪己诏，此其过人之处。</p>
+              <p style="margin-top:.6rem">七国之乱，削藩之策是也。晁错之议忧国之言，然操之过急遂激变乱。为政者当知缓急之序。</p>
+            </div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+<div class="event-card" id="evt-wmzx">
+      <div class="event-header" onclick="toggleCard(this)">
+        <div class="event-icon" style="background:rgba(185,74,74,.15);color:var(--red2)">👤</div>
+        <div class="event-info">
+          <h3>王莽篡汉 · 新朝改制</h3>
+          <div class="event-meta">
+            <span>前1年—23年</span>
+            <span>长安</span>
+            <span>王莽·王政君·刘歆·绿林·赤眉</span>
+            <span>通鉴卷三十三至卷三十九</span>
+          </div>
+        </div>
+        <span class="expand-icon">▼</span>
+      </div>
+      <div class="event-body">
+        <div class="event-body-inner">
+          <div class="tabs">
+            <div class="tab-btn active" onclick="switchTab(this,'wm-1')">纪事本末</div>
+            <div class="tab-btn" onclick="switchTab(this,'wm-2')">通鉴原文</div>
+            <div class="tab-btn" onclick="switchTab(this,'wm-3')">王夫之论</div>
+          </div>
+
+          <div class="tab-panel active" id="wm-1">
+            <div class="passage gold">
+              <span class="label">纪事本末始末</span>
+              <p><strong>王莽崛起：</strong>王莽为元帝皇后王政君之侄。少时折节恭俭，勤身博学。以外戚身份步步高升。封新都侯，后为大司马。</p>
+              <p style="margin-top:.8rem"><strong>篡汉建新：</strong>哀帝崩后，王莽复为大司马，立平帝，以女为皇后。平帝崩，立孺（rú）子婴为太子。居摄三年（8年），王莽废孺子婴，即天子位，改国号"新"。</p>
+              <p style="margin-top:.8rem"><strong>托古改制：</strong>王莽以周礼为蓝本推行改革：王田制（土地国有）、废奴、五均六筦（国家控制经济）、改革币制。然改革脱离实际，造成经济混乱。</p>
+              <p style="margin-top:.8rem"><strong>新朝覆灭：</strong>天下大乱，绿林军、赤眉军蜂起。更始帝刘玄立。23年，绿林军攻入长安，王莽被杀于渐台。新朝亡。</p>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="wm-2">
+            <div class="passage">
+              <span class="label">资治通鉴 · 卷三十七</span>
+              <p>"莽既灭翟义，自谓威德日盛，获天人助，遂谋即真之事矣。"</p>
+              <p class="source">——资治通鉴卷三十七</p>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="wm-3">
+            <div class="wf-box">
+              <div class="wf-title">王夫之《读通鉴论》卷五 · 论王莽</div>
+              <div class="wf-text">
+                <p>王莽之篡汉，<strong>非一人之力也，积渐之势也</strong>。自霍光以来，外戚专权已成风气。元帝以降，王氏一门五侯，权倾天下。莽不过承其势耳。</p>
+                <p style="margin-top:.6rem">莽之为人，<strong>伪善而不知治</strong>。少时折节恭俭，此伪也。及其得志，穷奢极欲，与前判若两人。其改制也，泥古不化，<strong>以周礼治今世，犹以古方疗今病</strong>，药不对症，病益深矣。</p>
+                <p style="margin-top:.6rem">王莽之败，<strong>败于不知变通也</strong>。天下之事，随时而变。治国者当因时制宜，不可拘泥于古。王莽以复古为名，行扰乱天下之实。田制、币制诸改，朝令夕改，民不聊生。</p>
+                <p style="margin-top:.6rem">然莽亦有可取者。其初志亦欲治天下也，非徒欲篡也。<strong>志大才疏，好名而不务实</strong>，此莽之所以亡也。为学者当以此为戒。</p>
+              </div>
+              <div class="wf-ref">——《读通鉴论》卷五 · 论王莽之伪善与泥古</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<div class="event-card" id="evt-dhzz">
+      <div class="event-header" onclick="toggleCard(this)">
+        <div class="event-icon" style="background:rgba(74,154,106,.15);color:var(--green2)">☀</div>
+        <div class="event-info">
+          <h3>光武中兴 · 东汉开国</h3>
+          <div class="event-meta">
+            <span>22年—57年</span>
+            <span>南阳·洛阳</span>
+            <span>刘秀·邓禹·冯异·耿弇·阴丽华</span>
+            <span>通鉴卷三十八至卷四十四</span>
+          </div>
+        </div>
+        <span class="expand-icon">▼</span>
+      </div>
+      <div class="event-body">
+        <div class="event-body-inner">
+          <div class="tabs">
+            <div class="tab-btn active" onclick="switchTab(this,'dhzz-1')">纪事本末</div>
+            <div class="tab-btn" onclick="switchTab(this,'dhzz-2')">通鉴原文</div>
+            <div class="tab-btn" onclick="switchTab(this,'dhzz-3')">王夫之论</div>
+          </div>
+
+          <div class="tab-panel active" id="dhzz-1">
+            <div class="passage green">
+              <span class="label">纪事本末始末</span>
+              <p><strong>起兵反莽：</strong>刘秀为汉高祖九世孙。22年，与兄刘縯（yǎn）起兵于南阳。加入绿林军，拥立更始帝刘玄。昆阳之战，刘秀以少胜多，大破王莽主力。</p>
+              <p style="margin-top:.8rem"><strong>经略河北：</strong>刘玄猜忌刘氏，杀刘縯。刘秀忍辱负重，被派往河北。在河北收编铜马等义军，势力大增。25年，刘秀在鄗城称帝，建都洛阳。</p>
+              <p style="margin-top:.8rem"><strong>统一全国：</strong>先后消灭更始帝、赤眉军、隗嚣（wěi xiāo）、公孙述（shù）等割据势力。36年，天下重归一统。</p>
+              <p style="margin-top:.8rem"><strong>光武善政：</strong>退功臣而进文吏，"以柔道治天下"。释放奴婢，轻徭薄赋，精简机构。功臣皆得善终，远胜汉高祖。史称"光武中兴"。</p>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="dhzz-2">
+            <div class="passage">
+              <span class="label">资治通鉴 · 卷四十</span>
+              <p>"秀性勤稼穑，而兄伯升好侠养士，常非笑光武事田业，比之高祖兄仲。"</p>
+              <p style="margin-top:.6rem">"光武曰：'吾治天下，亦欲以柔道行之。'"</p>
+              <p class="source">——资治通鉴卷四十 · 汉纪三十二</p>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="dhzz-3">
+            <div class="wf-box">
+              <div class="wf-title">王夫之《读通鉴论》卷六 · 论光武帝</div>
+              <div class="wf-text">
+                <p>光武中兴，<strong>三代以下最贤之君也</strong>。高祖豁达大度而寡恩；太宗英明神武而猜忌。独光武宽仁厚德，<strong>功臣皆得善终，此三代以后所仅见</strong>。</p>
+                <p style="margin-top:.6rem">光武善用人。邓禹、冯异、耿弇、吴汉皆名将。然光武不以武力治天下，而以<strong>"柔道"治天下</strong>。退功臣而进文吏，以儒术化天下。此其所以长治久安也。</p>
+                <p style="margin-top:.6rem">光武起于田亩，知稼穑之艰难。即位之后，<strong>轻徭薄赋，与民休息</strong>。释放奴婢，抑制豪强。故能于新莽大乱之后，迅速恢复天下。</p>
+                <p style="margin-top:.6rem">然光武亦有失焉。<strong>功臣虽得善终，然功臣之子孙渐成豪族</strong>。外戚宦官之祸，亦始于东汉。光武以柔道治天下，宽仁有余而威严不足，致使权臣渐长。此亦后世所当鉴也。</p>
+              </div>
+              <div class="wf-ref">——《读通鉴论》卷六 · 论光武之治</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<div class="event-card" id="evt-wmzz">
+      <div class="event-header" onclick="toggleCard(this)">
+        <div class="event-icon" style="background:rgba(201,168,76,.15);color:var(--gold2)">⚖</div>
+        <div class="event-info">
+          <h3>外戚宦官交替专权</h3>
+          <div class="event-meta">
+            <span>88年—189年</span>
+            <span>洛阳</span>
+            <span>窦宪·邓骘·梁冀·单超·曹节·王甫</span>
+            <span>通鉴卷四十七至卷五十九</span>
+          </div>
+        </div>
+        <span class="expand-icon">▼</span>
+      </div>
+      <div class="event-body">
+        <div class="event-body-inner">
+          <div class="tabs">
+            <div class="tab-btn active" onclick="switchTab(this,'wmzz-1')">纪事本末</div>
+            <div class="tab-btn" onclick="switchTab(this,'wmzz-2')">通鉴原文</div>
+            <div class="tab-btn" onclick="switchTab(this,'wmzz-3')">王夫之论</div>
+          </div>
+
+          <div class="tab-panel active" id="wmzz-1">
+            <div class="passage gold">
+              <span class="label">纪事本末始末</span>
+              <p><strong>第一阶段——外戚专权：</strong>和帝即位年幼，窦太后临朝，外戚窦宪专权。和帝与宦官郑众合谋诛窦氏。此后外戚宦官交替：邓太后→邓骘专权；安帝时宦官孙程等诛阎氏；顺帝时梁商、梁冀父子专权二十余年。</p>
+              <p style="margin-top:.8rem"><strong>梁冀之祸：</strong>梁冀以外戚为大将军，立三帝、杀一帝。质帝称其"跋扈将军"，竟被毒杀。桓帝与宦官单超等五人合谋诛梁冀，抄没其财三十亿。</p>
+              <p style="margin-top:.8rem"><strong>宦官专权：</strong>桓帝、灵帝时，宦官权势达到顶峰。"十常侍"把持朝政，卖官鬻爵。宦官与外戚、士大夫之间的斗争，成为东汉后期政治主旋律。</p>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="wmzz-2">
+            <div class="passage">
+              <span class="label">资治通鉴 · 卷五十四</span>
+              <p>"梁冀一门，前后七侯、三皇后、六贵人、二大将军，夫人、女食邑称君者七人，尚公主者三人，其余卿、将、尹、校五十七人。"</p>
+              <p class="source">——资治通鉴卷五十四</p>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="wmzz-3">
+            <div class="wf-box">
+              <div class="wf-title">王夫之《读通鉴论》卷七 · 论外戚宦官之祸</div>
+              <div class="wf-text">
+                <p>东汉之亡，<strong>亡于外戚宦官之祸也</strong>。此二者之祸，其源一也——<strong>君权旁落，主少国疑</strong>。少主即位，母后临朝，不得不以外戚为辅。及少主长，欲收权柄，又不得不借宦官之力。宦官得势，比之外戚尤甚。如此循环往复，国势日衰。</p>
+                <p style="margin-top:.6rem">光武以柔道治天下，<strong>宽仁有余而纲纪不足</strong>。使后世少主无以自立，母后得以临朝，外戚得以擅权。此光武始料未及也。</p>
+                <p style="margin-top:.6rem"><strong>宦官之祸，甚于外戚</strong>。外戚犹有门第之累，宦官则无所顾忌。宦官但知有利而不知有义，但知有权而不知有礼。其害天下，甚于洪水猛兽。</p>
+              </div>
+              <div class="wf-ref">——《读通鉴论》卷七 · 论东汉外戚宦官</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<div class="event-card" id="evt-dhqm">
+      <div class="event-header" onclick="toggleCard(this)">
+        <div class="event-icon" style="background:rgba(74,122,185,.15);color:var(--blue2)">⛓</div>
+        <div class="event-info">
+          <h3>党锢之祸 · 士人与宦官的生死对决</h3>
+          <div class="event-meta">
+            <span>166年—189年</span>
+            <span>洛阳·汝南</span>
+            <span>李膺·陈蕃·窦武·范滂·张俭</span>
+            <span>通鉴卷五十五至卷五十六</span>
+          </div>
+        </div>
+        <span class="expand-icon">▼</span>
+      </div>
+      <div class="event-body">
+        <div class="event-body-inner">
+          <div class="tabs">
+            <div class="tab-btn active" onclick="switchTab(this,'dg-1')">纪事本末</div>
+            <div class="tab-btn" onclick="switchTab(this,'dg-2')">通鉴原文</div>
+            <div class="tab-btn" onclick="switchTab(this,'dg-3')">王夫之论</div>
+          </div>
+
+          <div class="tab-panel active" id="dg-1">
+            <div class="passage blue">
+              <span class="label">纪事本末始末</span>
+              <p><strong>第一次党锢（166年）：</strong>太学生以李膺、陈蕃为首，批评朝政，抨击宦官。宦官集团诬李膺等"共为部党，诽讪朝廷"。桓帝大怒，下诏逮捕党人二百余名。窦武上书力争，次年赦免，但终身禁锢。</p>
+              <p style="margin-top:.8rem"><strong>第二次党锢（169年）：</strong>灵帝即位后，宦官曹节、王甫等再次迫害士人。李膺、范滂百余人被害。天下正人君子几乎一网打尽。"自此善类尽矣。"</p>
+              <p style="margin-top:.8rem"><strong>后果：</strong>党锢之祸使士大夫阶层遭受毁灭性打击。朝廷失去制约宦官的力量，政治更加腐败。十八年后，黄巾之乱爆发，东汉走向灭亡。</p>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="dg-2">
+            <div class="passage">
+              <span class="label">资治通鉴 · 卷五十六</span>
+              <p>"范滂就狱，其母就与之诀曰：'汝今得与李、杜齐名，死亦何恨！既有令名，复求寿考，可兼得乎？'滂跪受教，再拜而辞。"</p>
+              <p class="source">——资治通鉴卷五十六</p>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="dg-3">
+            <div class="wf-box">
+              <div class="wf-title">王夫之《读通鉴论》卷八 · 论党锢</div>
+              <div class="wf-text">
+                <p>党锢之祸，<strong>汉之士大夫以名节自励，而不知权变者也</strong>。李膺、范滂之流，忠义之士也。然激于一时之愤，<strong>以死为荣，以祸为乐</strong>，此烈士之行，非谋国之道也。</p>
+                <p style="margin-top:.6rem">夫君子之处乱世，<strong>当以全身济世为务，不可以殉名为高</strong>。李膺明知不可为而为之，以一身之死激天下之愤。其志可嘉，其智不足。使天下正人君子尽死于狱，而宦官之势益张。是徒死也，于国何益？</p>
+                <p style="margin-top:.6rem">然王夫之亦深同情党人。<strong>国之将亡，正气不伸，忠良被戮</strong>。党锢之祸，非党人之过，乃汉室之过也。宦官擅权而天子昏庸，致使忠臣义士不得善终。此所以汉室终亡也。</p>
+              </div>
+              <div class="wf-ref">——《读通鉴论》卷八 · 论党锢之祸</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<div class="event-card" id="evt-hmzz">
+      <div class="event-header" onclick="toggleCard(this)">
+        <div class="event-icon" style="background:rgba(185,74,74,.15);color:var(--red2)">⚔</div>
+        <div class="event-info">
+          <h3>黄巾起义 · 董卓入京 · 天下大乱</h3>
+          <div class="event-meta">
+            <span>184年—192年</span>
+            <span>洛阳·长安</span>
+            <span>张角·何进·董卓·袁绍·吕布</span>
+            <span>通鉴卷五十八至卷六十</span>
+          </div>
+        </div>
+        <span class="expand-icon">▼</span>
+      </div>
+      <div class="event-body">
+        <div class="event-body-inner">
+          <div class="tabs">
+            <div class="tab-btn active" onclick="switchTab(this,'hj-1')">纪事本末</div>
+            <div class="tab-btn" onclick="switchTab(this,'hj-2')">通鉴原文</div>
+            <div class="tab-btn" onclick="switchTab(this,'hj-3')">王夫之论</div>
+          </div>
+
+          <div class="tab-panel active" id="hj-1">
+            <div class="passage red">
+              <span class="label">纪事本末始末</span>
+              <p><strong>黄巾起义（184年）：</strong>张角以太平道聚众数十万，头裹黄巾，起兵反汉。"苍天已死，黄天当立。岁在甲子，天下大吉。"朝廷命皇甫嵩、朱儁等讨伐。黄巾主力虽败，余部遍布各地。</p>
+              <p style="margin-top:.8rem"><strong>何进召董卓：</strong>灵帝崩，少帝即位。大将军何进谋诛宦官，密召并州牧董卓入京。事泄，何进被宦官所杀。袁绍率兵尽诛宦官二千余人。</p>
+              <p style="margin-top:.8rem"><strong>董卓乱政：</strong>董卓入洛阳，废少帝，立献帝。"性残忍，诸将言语有蹉跌，便戮于前。"迁都长安，焚毁洛阳。天下诸侯讨董，但各怀私心，联军瓦解。</p>
+              <p style="margin-top:.8rem"><strong>吕布杀董卓（192年）：</strong>司徒王允用美人计离间董卓、吕布。吕布杀董卓于宫门前。董卓之乱虽平，但天下已不可收拾。群雄割据时代开始。</p>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="hj-2">
+            <div class="passage">
+              <span class="label">资治通鉴 · 卷五十九</span>
+              <p>"卓以袁绍之故，遂废帝为弘农王，立陈留王协为帝。卓自为太师，赞拜不名，入朝不趋，剑履上殿。"</p>
+              <p class="source">——资治通鉴卷五十九</p>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="hj-3">
+            <div class="wf-box">
+              <div class="wf-title">王夫之《读通鉴论》卷八 · 论汉末大乱</div>
+              <div class="wf-text">
+                <p>东汉之亡，<strong>非亡于黄巾，非亡于董卓，亡于其内政之败坏也</strong>。百年外戚宦官之争，忠良被害，纲纪崩坏。黄巾之乱不过导火索耳。</p>
+                <p style="margin-top:.6rem">何进召外兵入京，此<strong>自取灭亡之道也</strong>。引狼入室，欲借虎驱犬，不知虎之害甚于犬也。何进之愚，千古罕见。董卓入京后废立天子如儿戏，汉室名存实亡。</p>
+                <p style="margin-top:.6rem">天下诸侯讨董，而各怀私心。<strong>名为讨贼，实为争地</strong>。群雄割据之局已成，汉室不可复兴矣。此后三国鼎立，亦势之必然也。</p>
+              </div>
+              <div class="wf-ref">——《读通鉴论》卷八 · 论汉末之乱</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <section class="era-section" id="era-3k">
+    <div class="era-header">
+      <h2>卷九至卷十一 · 三国鼎立</h2>
+      <div class="era-meta">190年 — 280年 · 资治通鉴卷五十九至卷八十一</div>
+    </div>
+
+<div class="event-card" id="evt-cbwz">
+      <div class="event-header" onclick="toggleCard(this)">
+        <div class="event-icon" style="background:rgba(74,122,185,.15);color:var(--blue2)">👑</div>
+        <div class="event-info">
+          <h3>曹操霸魏 · 挟天子以令诸侯</h3>
+          <div class="event-meta">
+            <span>196年—220年</span>
+            <span>许都·邺城</span>
+            <span>曹操·荀彧（xún yù）·郭嘉（jiā）·汉献帝</span>
+            <span>通鉴卷六十二至卷六十九</span>
+          </div>
+        </div>
+        <span class="expand-icon">▼</span>
+      </div>
+      <div class="event-body">
+        <div class="event-body-inner">
+          <div class="tabs">
+            <div class="tab-btn active" onclick="switchTab(this,'cc-1')">纪事本末</div>
+            <div class="tab-btn" onclick="switchTab(this,'cc-2')">通鉴原文</div>
+            <div class="tab-btn" onclick="switchTab(this,'cc-3')">王夫之论</div>
+          </div>
+
+          <div class="tab-panel active" id="cc-1">
+            <div class="passage blue">
+              <span class="label">纪事本末始末</span>
+              <p><strong>迎天子都许（196年）：</strong>曹操从荀彧之计，迎汉献帝都许昌。"挟天子以令诸侯"，取得政治优势。</p>
+              <p style="margin-top:.8rem"><strong>官渡之战（200年）：</strong>袁绍十万大军南下。曹操兵少粮尽，用荀攸、许攸（yōu）之计，奇袭乌巢，焚袁绍粮草。大破袁军，统一北方之基。</p>
+              <p style="margin-top:.8rem"><strong>统一北方：</strong>207年北征乌桓，东临碣石。至此，北方尽归曹操。208年南征荆州，刘琮降。赤壁之战败于孙刘联军，天下三分之势成。</p>
+              <p style="margin-top:.8rem"><strong>进爵魏王：</strong>曹操位极人臣，加九锡，封魏王。然终身未称帝，曰"若天命在吾，吾为周文王矣"。220年卒，子曹丕代汉称帝。</p>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="cc-2">
+            <div class="passage">
+              <span class="label">资治通鉴 · 卷六十三</span>
+              <p>"操在兖州，以毛玠为治中从事。玠语操曰：'今天下分崩，乘舆播荡，生民废业。夫兵义者胜，宜奉天子以令不臣。'操从之。"</p>
+              <p class="source">——资治通鉴卷六十三</p>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="cc-3">
+            <div class="wf-box">
+              <div class="wf-title">王夫之《读通鉴论》卷九 · 论曹操</div>
+              <div class="wf-text">
+                <p>曹操之才，<strong>乱世之英雄也</strong>。其用兵如神，其用人不拘一格。然其心术不正，<strong>名为汉相，实为汉贼</strong>。挟天子以令诸侯，汉室之名存而实亡。</p>
+                <p style="margin-top:.6rem">操之得人才，以其不拘门第也。"唯才是举"，不论出身。此其所以能成大业也。然操性猜忌，<strong>杀孔融、杨修、荀彧</strong>，皆名士也。才高而德薄，此操之短也。</p>
+                <p style="margin-top:.6rem">操终身不称帝，或曰知足。然非也。<strong>操非不欲帝也，时不可也</strong>。孙刘在侧，天下未一。称帝则失人心。操之不帝，非不想也，不敢也。及曹丕代汉，水到渠成矣。</p>
+              </div>
+              <div class="wf-ref">——《读通鉴论》卷九 · 论曹操之才与德</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<div class="event-card" id="evt-scyj">
+      <div class="event-header" onclick="toggleCard(this)">
+        <div class="event-icon" style="background:rgba(185,74,74,.15);color:var(--red2)">🔥</div>
+        <div class="event-info">
+          <h3>孙策创业·赤壁之战</h3>
+          <div class="event-meta"><span>194年—208年</span><span>江东·赤壁</span><span>孙策·孙权·周瑜·曹操</span><span>通鉴卷六十一至卷六十五</span></div>
+        </div>
+        <span class="expand-icon">▼</span>
+      </div>
+      <div class="event-body"><div class="event-body-inner">
+        <div class="tabs">
+          <div class="tab-btn active" onclick="switchTab(this,'cb-1')">纪事本末</div>
+          <div class="tab-btn" onclick="switchTab(this,'cb-2')">通鉴原文</div>
+          <div class="tab-btn" onclick="switchTab(this,'cb-3')">王夫之论</div>
+        </div>
+        <div class="tab-panel active" id="cb-1">
+          <div class="passage blue"><span class="label">纪事本末始末</span>
+            <p><strong>孙策平江东：</strong>孙坚死后，孙策以传国玺向袁术借兵，率部曲渡江横扫江东。"策为人，美姿颜，性阔达听受，善于用人。"人称"小霸王"。200年遇刺身亡，年二十六。托弟于张昭、周瑜。</p>
+            <p style="margin-top:.8rem"><strong>赤壁之战（208年）：</strong>曹操统一北方后南征，刘琮降。曹操率二十余万（号称八十万）顺江东下。孙刘联军约五万。周瑜用黄盖诈降计，以火攻烧曹操战舰于赤壁。"火烈风猛，船往如箭，烧尽北船，延及岸上营落。"曹操大败北逃。天下三分之势成。</p>
+          </div>
+        </div>
+        <div class="tab-panel" id="cb-2">
+          <div class="passage"><span class="label">资治通鉴 · 卷六十五</span>
+            <p>"时东南风急，盖以十舰最著前，中江举帆，余船以次俱进。去北军二里余，同时发火，火烈风猛，船往如箭，烧尽北船，延及岸上营落。顷之，烟炎张天，人马烧溺死者甚众。"</p>
+            <p class="source">——资治通鉴卷六十五 · 汉纪五十七</p>
+          </div>
+        </div>
+        <div class="tab-panel" id="cb-3">
+          <div class="wf-box"><div class="wf-title">王夫之《读通鉴论》卷九 · 论赤壁</div>
+            <div class="wf-text">
+              <p>赤壁之战，天下三分之关键。曹操之败，骄而轻敌。北方之兵不习水战，以疲敝之师临大江。孙刘之胜在于合力。分则弱合则强。然孙刘之合亦利之合也，故赤壁之后荆州之争，孙刘反目。</p>
+            </div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+<div class="event-card" id="evt-wwgq">
+      <div class="event-header" onclick="toggleCard(this)">
+        <div class="event-icon" style="background:rgba(74,154,106,.15);color:var(--green2)">🪶</div>
+        <div class="event-info">
+          <h3>诸葛亮北伐 · 鞠躬尽瘁</h3>
+          <div class="event-meta">
+            <span>228年—234年</span>
+            <span>汉中·祁山·五丈原</span>
+            <span>诸葛亮·马谡·司马懿·姜维</span>
+            <span>通鉴卷七十一至卷七十三</span>
+          </div>
+        </div>
+        <span class="expand-icon">▼</span>
+      </div>
+      <div class="event-body">
+        <div class="event-body-inner">
+          <div class="tabs">
+            <div class="tab-btn active" onclick="switchTab(this,'kl-1')">纪事本末</div>
+            <div class="tab-btn" onclick="switchTab(this,'kl-2')">通鉴原文</div>
+            <div class="tab-btn" onclick="switchTab(this,'kl-3')">王夫之论</div>
+          </div>
+
+          <div class="tab-panel active" id="kl-1">
+            <div class="passage green">
+              <span class="label">纪事本末始末 · 五次北伐</span>
+              <p><strong>第一次（228年）：</strong>出祁山，天水、南安、安定三郡响应。然马谡失街亭，亮挥泪斩马谡。三郡复失。</p>
+              <p style="margin-top:.5rem"><strong>第二次（228年冬）：</strong>出散关，围陈仓。粮尽退兵，斩魏将王双。</p>
+              <p style="margin-top:.5rem"><strong>第三次（229年）：</strong>攻取武都、阴平二郡。</p>
+              <p style="margin-top:.5rem"><strong>第四次（231年）：</strong>再出祁山。以木牛流马运粮。败司马懿于卤城。然李严谎报军情，亮不得不退兵。</p>
+              <p style="margin-top:.5rem"><strong>第五次（234年）：</strong>出斜谷，屯田于五丈原。与司马懿对峙百余日。亮病重，卒于军中。年五十四。"出师未捷身先死，长使英雄泪满襟。"</p>
+              <p style="margin-top:.8rem"><strong>身后：</strong>蜀军秘不发丧，整军撤退。司马懿不敢追。"死诸葛走生仲达。"后姜维继承遗志，继续北伐。</p>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="kl-2">
+            <div class="passage">
+              <span class="label">资治通鉴 · 卷七十二</span>
+              <p>"亮曰：'大军在祁山、箕谷，皆多于贼，而不能破贼，反为贼所破者，则此病不在兵少也，在一人耳。'"</p>
+              <p style="margin-top:.6rem">"每患粮不继，使己志不申，是以分兵屯田，为久驻之基。耕者杂于渭滨居民之间，而百姓安堵，军无私焉。"</p>
+              <p class="source">——资治通鉴卷七十二至七十三</p>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="kl-3">
+            <div class="wf-box">
+              <div class="wf-title">王夫之《读通鉴论》卷十 · 论诸葛亮</div>
+              <div class="wf-text">
+                <p>诸葛亮之才，<strong>三代以下第一人也</strong>。管仲、萧何不及也。其治蜀也，法严而民服。其用兵也，虽未成功，然以弱蜀抗强魏，<strong>攻守之势异也</strong>。亮之北伐，知其不可为而为之，<strong>以攻为守也</strong>。使亮不北伐，蜀亦不能自保。</p>
+                <p style="margin-top:.6rem">或问亮何不以守为守？曰：蜀小魏大，守则必亡。<strong>以攻代守，则魏不得全力南下</strong>。亮之五出祁山，非欲灭魏也，使魏疲于奔命也。此亮之大智也。</p>
+                <p style="margin-top:.6rem">亮之德，<strong>千古所仅见</strong>。受托孤之重任，而无一丝僭（jiàn）越之心。后主昏庸，亮辅之而不夺之。"鞠躬尽瘁，死而后已"。比之曹操之挟天子，不亦远乎？</p>
+                <p style="margin-top:.6rem">然亮亦有失。<strong>事必躬亲，不知分权</strong>。"政事无巨细，咸决于亮"。此其所以积劳成疾也。为政者当知分任人才，不可以一人之智治天下。</p>
+              </div>
+              <div class="wf-ref">——《读通鉴论》卷十 · 论诸葛武侯</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<div class="event-card" id="evt-lbdf">
+      <div class="event-header" onclick="toggleCard(this)">
+        <div class="event-icon" style="background:rgba(74,154,106,.15);color:var(--green2)">🐉</div>
+        <div class="event-info">
+          <h3>刘备入蜀·夷陵之战</h3>
+          <div class="event-meta"><span>211年—222年</span><span>成都·夷陵</span><span>刘备·法正·陆逊</span><span>通鉴卷六十六至卷六十九</span></div>
+        </div>
+        <span class="expand-icon">▼</span>
+      </div>
+      <div class="event-body"><div class="event-body-inner">
+        <div class="tabs">
+          <div class="tab-btn active" onclick="switchTab(this,'lb-1')">纪事本末</div>
+          <div class="tab-btn" onclick="switchTab(this,'lb-2')">通鉴原文</div>
+          <div class="tab-btn" onclick="switchTab(this,'lb-3')">王夫之论</div>
+        </div>
+        <div class="tab-panel active" id="lb-1">
+          <div class="passage green"><span class="label">纪事本末始末</span>
+            <p><strong>入蜀：</strong>刘璋暗弱，遣法正迎刘备入蜀以拒张鲁。刘备入蜀后与刘璋反目。214年围成都，刘璋降。</p>
+            <p style="margin-top:.8rem"><strong>关羽失荆州：</strong>219年关羽北伐，水淹七军，威震华夏。孙权遣吕蒙白衣渡江偷袭。关羽败走麦城被擒杀。荆州失。</p>
+            <p style="margin-top:.8rem"><strong>夷陵之战（222年）：</strong>刘备倾国伐吴。连营七百里。陆逊以火攻破之。"火烧连营"。刘备败退白帝城，次年病亡。</p>
+          </div>
+        </div>
+        <div class="tab-panel" id="lb-2">
+          <div class="passage"><span class="label">资治通鉴 · 卷六十九</span>
+            <p>"陆逊曰：'备是猾虏，更尝事多。今住已久，兵疲意沮，计不复生。掎角此寇，正在今日。'乃敕各持一把茅，以火攻拔之。"</p>
+            <p class="source">——资治通鉴卷六十九 · 魏纪一</p>
+          </div>
+        </div>
+        <div class="tab-panel" id="lb-3">
+          <div class="wf-box"><div class="wf-title">王夫之《读通鉴论》卷十 · 论刘备伐吴</div>
+            <div class="wf-text">
+              <p>刘备伐吴，以私忿忘大义。联吴抗曹乃隆中大计，因一将之仇而弃之。陆逊坚守不战以逸待劳，刘备连营七百里犯兵家大忌。</p>
+            </div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+<div class="event-card" id="evt-sysm">
+      <div class="event-header" onclick="toggleCard(this)">
+        <div class="event-icon" style="background:rgba(201,168,76,.15);color:var(--gold2)">🐍</div>
+        <div class="event-info">
+          <h3>司马氏篡魏 · 三国归晋</h3>
+          <div class="event-meta">
+            <span>249年—280年</span>
+            <span>洛阳·建业</span>
+            <span>司马懿·司马师·司马昭·司马炎</span>
+            <span>通鉴卷七十五至卷八十一</span>
+          </div>
+        </div>
+        <span class="expand-icon">▼</span>
+      </div>
+      <div class="event-body">
+        <div class="event-body-inner">
+          <div class="tabs">
+            <div class="tab-btn active" onclick="switchTab(this,'sm-1')">纪事本末</div>
+            <div class="tab-btn" onclick="switchTab(this,'sm-2')">通鉴原文</div>
+            <div class="tab-btn" onclick="switchTab(this,'sm-3')">王夫之论</div>
+          </div>
+
+          <div class="tab-panel active" id="sm-1">
+            <div class="passage gold">
+              <span class="label">纪事本末始末</span>
+              <p><strong>高平陵之变（249年）：</strong>司马懿趁曹爽随魏帝出城祭扫，发动政变，控制洛阳。曹爽投降，被诛三族。司马懿独揽大权。</p>
+              <p style="margin-top:.8rem"><strong>司马师废帝：</strong>司马懿死后，子司马师继掌大权。254年废曹芳，立曹髦。</p>
+              <p style="margin-top:.8rem"><strong>司马昭弑君：</strong>260年，曹髦不甘为傀儡，率宫人讨司马昭。贾充指使成济杀曹髦。"司马昭之心，路人皆知。"立曹奂为帝。</p>
+              <p style="margin-top:.8rem"><strong>三国归晋：</strong>263年灭蜀。265年司马炎代魏，建立西晋。280年灭吴，天下统一。"王濬楼船下益州，金陵王气黯然收。"</p>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="sm-2">
+            <div class="passage">
+              <span class="label">资治通鉴 · 卷七十七</span>
+              <p>"帝见威权日去，不胜其忿……曰：'司马昭之心，路人所知也。吾不能坐受废辱，今日当与卿等自出讨之。'"</p>
+              <p class="source">——资治通鉴卷七十七 · 魏纪九</p>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="sm-3">
+            <div class="wf-box">
+              <div class="wf-title">王夫之《读通鉴论》卷十一 · 论司马氏</div>
+              <div class="wf-text">
+                <p>司马氏之篡魏，<strong>以曹氏之篡汉为鉴，而终不免于篡也</strong>。天道好还，报应不爽。曹操欺汉献帝，司马懿欺曹芳。以暴易暴，何其相似也。</p>
+                <p style="margin-top:.6rem"><strong>开国不正，后世必乱</strong>。曹氏以篡得天下，司马氏以篡取之。晋室得国不正，故其子孙亦不能安。八王之乱、五胡乱华，皆其报也。</p>
+                <p style="margin-top:.6rem">司马昭弑君，此千古之大恶也。虽贾充、成济为之，<strong>昭实主谋也</strong>。曹髦虽愚，犹有血性。以天子之尊讨贼而死，壮矣哉！然终不能挽回大局。权臣之势已成，天子不过傀儡耳。</p>
+              </div>
+              <div class="wf-ref">——《读通鉴论》卷十一 · 论司马氏之篡</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <section class="era-section" id="era-jin">
+    <div class="era-header">
+      <h2>卷十二至卷十六 · 两晋风云</h2>
+      <div class="era-meta">265年 — 420年 · 资治通鉴卷七十九至卷一一八</div>
+    </div>
+
+<div class="event-card" id="evt-xjzy">
+      <div class="event-header" onclick="toggleCard(this)">
+        <div class="event-icon" style="background:rgba(185,74,74,.15);color:var(--red2)">👑</div>
+        <div class="event-info">
+          <h3>西晋统一 · 八王之乱</h3>
+          <div class="event-meta">
+            <span>280年—316年</span>
+            <span>洛阳·长安</span>
+            <span>司马炎·贾南风·八王</span>
+            <span>通鉴卷八十一至卷八十九</span>
+          </div>
+        </div>
+        <span class="expand-icon">▼</span>
+      </div>
+      <div class="event-body">
+        <div class="event-body-inner">
+          <div class="tabs">
+            <div class="tab-btn active" onclick="switchTab(this,'bw-1')">纪事本末</div>
+            <div class="tab-btn" onclick="switchTab(this,'bw-2')">通鉴原文</div>
+            <div class="tab-btn" onclick="switchTab(this,'bw-3')">王夫之论</div>
+          </div>
+
+          <div class="tab-panel active" id="bw-1">
+            <div class="passage red">
+              <span class="label">纪事本末始末</span>
+              <p><strong>晋武帝失策：</strong>司马炎统一后骄奢淫逸。大封宗室为王，授予兵权。又立白痴太子司马衷（惠帝）。临终以杨骏辅政。</p>
+              <p style="margin-top:.8rem"><strong>贾南风乱政：</strong>惠帝皇后贾南风凶狠多权谋。先杀杨骏，又杀汝南王亮、楚王玮。引发宗室内讧。</p>
+              <p style="margin-top:.8rem"><strong>八王之乱（291年—306年）：</strong>汝南王亮、楚王玮、赵王伦、齐王冏、长沙王乂、成都王颖、河间王颙、东海王越先后混战。战火遍及中原，死者数十万。</p>
+              <p style="margin-top:.8rem"><strong>西晋灭亡：</strong>八王之乱耗尽国力。匈奴刘渊（yuān）、刘聪父子建汉国，311年攻破洛阳（永嘉之乱），316年攻破长安。西晋亡。</p>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="bw-2">
+            <div class="passage">
+              <span class="label">资治通鉴 · 卷八十二</span>
+              <p>"帝为人戇�，尝在华林园闻虾蟆，谓左右曰：'此鸣者为官乎？为私乎？'时天下荒馑，百姓饿死，帝闻之曰：'何不食肉糜？'"</p>
+              <p class="source">——资治通鉴卷八十二 · 晋纪四</p>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="bw-3">
+            <div class="wf-box">
+              <div class="wf-title">王夫之《读通鉴论》卷十二 · 论西晋之亡</div>
+              <div class="wf-text">
+                <p>西晋之亡，<strong>亡于得国之不正也</strong>。司马氏以篡夺得天下，其臣亦以篡夺之心事之。八王之乱，不过司马氏子孙互相篡夺耳。<strong>以篡得国者，其臣必以篡</strong>。</p>
+                <p style="margin-top:.6rem">晋武帝大封宗室，<strong>矫枉过正</strong>。惩魏之孤立而亡，遂大封诸王。不知宗室强大，则天子势弱。曹魏失天下于权臣，西晋失天下于宗室。两者皆失也。</p>
+                <p style="margin-top:.6rem">贾南风之祸，<strong>后宫干政之弊也</strong>。武帝不知立贤后而立悍妇，惠帝痴愚不能制。后妃乱政，宗室混战，五胡乘虚而入。<strong>中原板荡，生灵涂炭</strong>。此皆晋室之罪也。</p>
+              </div>
+              <div class="wf-ref">——《读通鉴论》卷十二 · 论西晋八王之乱</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<div class="event-card" id="evt-whdq">
+      <div class="event-header" onclick="toggleCard(this)">
+        <div class="event-icon" style="background:rgba(185,74,74,.15);color:var(--red2)">🏔</div>
+        <div class="event-info">
+          <h3>五胡乱华 · 衣冠南渡</h3>
+          <div class="event-meta">
+            <span>304年—439年</span>
+            <span>中原·建康</span>
+            <span>刘渊·石勒（lè）·苻坚（fú）·拓跋珪（tuò bá guī）·王导·司马睿</span>
+            <span>通鉴卷八十五至卷一二〇</span>
+          </div>
+        </div>
+        <span class="expand-icon">▼</span>
+      </div>
+      <div class="event-body">
+        <div class="event-body-inner">
+          <div class="tabs">
+            <div class="tab-btn active" onclick="switchTab(this,'wh-1')">纪事本末</div>
+            <div class="tab-btn" onclick="switchTab(this,'wh-2')">通鉴原文</div>
+            <div class="tab-btn" onclick="switchTab(this,'wh-3')">王夫之论</div>
+          </div>
+
+          <div class="tab-panel active" id="wh-1">
+            <div class="passage red">
+              <span class="label">纪事本末始末</span>
+              <p><strong>五胡建国：</strong>匈奴刘渊建汉（304年），其子刘聪灭西晋。羯族石勒建后赵。氐族苻健建前秦。羌族姚苌建后秦。鲜卑拓跋珪建北魏。百余年间，北方先后出现十余个政权。</p>
+              <p style="margin-top:.8rem"><strong>衣冠南渡：</strong>永嘉之乱后，中原士族纷纷南渡。317年，司马睿在建康（今南京）称帝，建立东晋。"王与马，共天下"。王导、王敦（dūn）兄弟辅政。</p>
+              <p style="margin-top:.8rem"><strong>前秦统一北方：</strong>苻坚重用汉人王猛，统一北方。383年发兵百万攻东晋，淝水之战大败。"风声鹤唳，草木皆兵"。前秦随即瓦解。</p>
+              <p style="margin-top:.8rem"><strong>北魏统一：</strong>鲜卑拓跋氏建立北魏，经数代经营，至太武帝拓跋焘（tuò bá tāo）统一北方（439年）。南北对峙格局形成。</p>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="wh-2">
+            <div class="passage">
+              <span class="label">资治通鉴 · 卷八十七</span>
+              <p>"时海内大乱，独江东差安，中国士民避乱者多南渡江。镇东司马王导说琅琊王睿收其贤俊，辟掾属百余人。"</p>
+              <p class="source">——资治通鉴卷八十七</p>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="wh-3">
+            <div class="wf-box">
+              <div class="wf-title">王夫之《读通鉴论》卷十三 · 论五胡乱华</div>
+              <div class="wf-text">
+                <p>五胡之乱，<strong>非胡之强也，晋之弱也</strong>。八王之乱，中原残破。胡人乘虚而入，如入无人之境。此<strong>自取灭亡之道</strong>。</p>
+                <p style="margin-top:.6rem">衣冠南渡，<strong>华夏文明之南移也</strong>。自古文化在北方，自晋室南迁，南方始有文教之盛。王导辅政，"镇之以静"，使江东安定。此其功也。</p>
+                <p style="margin-top:.6rem">苻坚之败，<strong>败于不能知人善任也</strong>。王猛在时，前秦强盛。王猛临终劝苻坚勿攻晋，坚不听。"<strong>鲜卑、羌虏，我之仇也，终为人患</strong>。"猛之言验矣。坚以百万之众攻晋，而败于淝水。非兵不利也，人心不齐也。鲜卑慕容（mù róng）氏、羌族姚氏皆有二心。</p>
+                <p style="margin-top:.6rem">五胡乱华之世，<strong>华夏文明不绝如缕</strong>。北方虽乱，儒学未绝。南方虽安，尚清谈而轻实务。南朝之衰，亦由此始。</p>
+              </div>
+              <div class="wf-ref">——《读通鉴论》卷十三 · 论五胡之乱与衣冠南渡</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<div class="event-card" id="evt-djbx">
+      <div class="event-header" onclick="toggleCard(this)">
+        <div class="event-icon" style="background:rgba(74,122,185,.15);color:var(--blue2)">⚔</div>
+        <div class="event-info">
+          <h3>东晋北伐·祖逖桓温</h3>
+          <div class="event-meta"><span>313年—369年</span><span>中原·建康</span><span>祖逖·桓温</span><span>通鉴卷八十八至卷一〇二</span></div>
+        </div>
+        <span class="expand-icon">▼</span>
+      </div>
+      <div class="event-body"><div class="event-body-inner">
+        <div class="tabs">
+          <div class="tab-btn active" onclick="switchTab(this,'db-1')">纪事本末</div>
+          <div class="tab-btn" onclick="switchTab(this,'db-2')">通鉴原文</div>
+          <div class="tab-btn" onclick="switchTab(this,'db-3')">王夫之论</div>
+        </div>
+        <div class="tab-panel active" id="db-1">
+          <div class="passage blue"><span class="label">纪事本末始末</span>
+            <p><strong>祖逖（tì）北伐：</strong>"闻鸡起舞"之祖逖。渡江击楫（jí）而誓曰："祖逖不能清中原而复济者，有如大江！"率部曲北渡，收复黄河以南。然朝廷掣肘，逖忧愤而死。失地复陷。</p>
+            <p style="margin-top:.8rem"><strong>桓温北伐（354—369年）：</strong>桓温三次北伐。354年伐前秦至灞上。356年收复洛阳。369年伐前燕至枋（fāng）头，粮尽退兵大败。桓温以北伐立威，实怀篡位之心。</p>
+            <p style="margin-top:.8rem"><strong>北伐之困：</strong>东晋朝廷猜忌北伐将领。将领或被掣肘，或借北伐自重。北伐遂成政治工具，非纯为恢复。</p>
+          </div>
+        </div>
+        <div class="tab-panel" id="db-2">
+          <div class="passage"><span class="label">资治通鉴 · 卷八十八</span>
+            <p>"逖以社稷倾覆，常怀振复之志……中流击楫而誓曰：'祖逖不能清中原而复济者，有如大江！'辞色壮烈，众皆慨叹。"</p>
+            <p class="source">——资治通鉴卷八十八 · 晋纪十</p>
+          </div>
+        </div>
+        <div class="tab-panel" id="db-3">
+          <div class="wf-box"><div class="wf-title">王夫之《读通鉴论》卷十三 · 论东晋北伐</div>
+            <div class="wf-text">
+              <p>祖逖之志忠义之极。"击楫中流"千古壮举。然朝廷掣肘壮志未酬。东晋之不振非无人才，乃君臣猜忌使然。</p>
+              <p style="margin-top:.6rem">桓温之北伐名为恢复实为篡夺。以北伐之功立威，以兵权之势逼主。后世权臣效之，北伐遂为篡夺之阶梯。</p>
+            </div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+<div class="event-card" id="evt-hxzz2">
+      <div class="event-header" onclick="toggleCard(this)">
+        <div class="event-icon" style="background:rgba(185,74,74,.15);color:var(--red2)">👑</div>
+        <div class="event-info">
+          <h3>桓玄篡位·刘裕代晋</h3>
+          <div class="event-meta"><span>403年—420年</span><span>建康</span><span>桓玄·刘裕</span><span>通鉴卷一一三至卷一一八</span></div>
+        </div>
+        <span class="expand-icon">▼</span>
+      </div>
+      <div class="event-body"><div class="event-body-inner">
+        <div class="tabs">
+          <div class="tab-btn active" onclick="switchTab(this,'hx-1')">纪事本末</div>
+          <div class="tab-btn" onclick="switchTab(this,'hx-2')">通鉴原文</div>
+          <div class="tab-btn" onclick="switchTab(this,'hx-3')">王夫之论</div>
+        </div>
+        <div class="tab-panel active" id="hx-1">
+          <div class="passage red"><span class="label">纪事本末始末</span>
+            <p><strong>桓玄篡位（403年）：</strong>桓温之子桓玄以荆州为基地东下攻入建康。废安帝自立为帝，国号楚。骄奢淫逸。</p>
+            <p style="margin-top:.8rem"><strong>刘裕起兵（404年）：</strong>北府兵将领刘裕等起兵讨桓玄。桓玄败退荆州被杀。复安帝。刘裕以功执政。</p>
+            <p style="margin-top:.8rem"><strong>刘裕北伐：</strong>410年灭南燕，417年灭后秦收复长安洛阳。"金戈铁马，气吞万里如虎。"</p>
+            <p style="margin-top:.8rem"><strong>代晋建宋（420年）：</strong>刘裕以功高封宋王，代晋称帝建宋。东晋亡，南朝开始。</p>
+          </div>
+        </div>
+        <div class="tab-panel" id="hx-2">
+          <div class="passage"><span class="label">资治通鉴 · 卷一一三至一一八</span>
+            <p>"裕帅沛国刘毅、东海何无忌等起义兵。裕曰：'今日之事，不得不尔。'"</p>
+            <p class="source">——资治通鉴卷一一三</p>
+          </div>
+        </div>
+        <div class="tab-panel" id="hx-3">
+          <div class="wf-box"><div class="wf-title">王夫之《读通鉴论》卷十四 · 论刘裕</div>
+            <div class="wf-text">
+              <p>刘裕之才东晋以来第一人。灭南燕、后秦收复两京，自衣冠南渡以来未有如此之功者。然以篡得国，其后子孙亦以篡失之。宋齐梁陈代代相篡，皆源于此。</p>
+            </div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+  </section>
+
+  <section class="era-section" id="era-nsdyn">
+    <div class="era-header">
+      <h2>卷十七至卷二十二 · 南北朝</h2>
+      <div class="era-meta">420年 — 589年 · 资治通鉴卷一一九至卷一七六</div>
+    </div>
+
+<div class="event-card" id="evt-bwtn">
+      <div class="event-header" onclick="toggleCard(this)">
+        <div class="event-icon" style="background:rgba(74,154,106,.15);color:var(--green2)">🏔</div>
+        <div class="event-info">
+          <h3>北魏孝文帝改革 · 民族融合</h3>
+          <div class="event-meta">
+            <span>471年—499年</span>
+            <span>平城·洛阳</span>
+            <span>拓跋宏（tuò bá hóng）(元宏)·冯（féng）太后</span>
+            <span>通鉴卷一三三至卷一四一</span>
+          </div>
+        </div>
+        <span class="expand-icon">▼</span>
+      </div>
+      <div class="event-body">
+        <div class="event-body-inner">
+          <div class="tabs">
+            <div class="tab-btn active" onclick="switchTab(this,'xwg-1')">纪事本末</div>
+            <div class="tab-btn" onclick="switchTab(this,'xwg-2')">通鉴原文</div>
+            <div class="tab-btn" onclick="switchTab(this,'xwg-3')">王夫之论</div>
+          </div>
+
+          <div class="tab-panel active" id="xwg-1">
+            <div class="passage green">
+              <span class="label">纪事本末始末</span>
+              <p><strong>冯太后改革：</strong>献文帝时，冯太后临朝称制。推行均田制、三长制、俸禄制。奠定北魏强盛基础。</p>
+              <p style="margin-top:.8rem"><strong>孝文帝亲政：</strong>490年冯太后崩，孝文帝亲政。迁都洛阳（494年），以南征为名率军南下，至洛阳，群臣不愿再走，遂定都。</p>
+              <p style="margin-top:.8rem"><strong>全面汉化：</strong>改鲜卑姓为汉姓（拓跋改元等）；禁鲜卑语，改说汉语；改穿汉服；鼓励鲜卑贵族与汉族通婚；采用汉族礼制。</p>
+              <p style="margin-top:.8rem"><strong>深远影响：</strong>促进民族融合，为隋唐统一奠定基础。但改革也引发鲜卑保守派不满，为北魏分裂埋下伏笔。</p>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="xwg-2">
+            <div class="passage">
+              <span class="label">资治通鉴 · 卷一四〇</span>
+              <p>"魏主曰：'此间日用所资，不可不习。'乃诏断北语，一从正音。违者免官。'"</p>
+              <p class="source">——资治通鉴卷一四〇</p>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="xwg-3">
+            <div class="wf-box">
+              <div class="wf-title">王夫之《读通鉴论》卷十五 · 论孝文改革</div>
+              <div class="wf-text">
+                <p>孝文帝之改革，<strong>千古之伟业也</strong>。以夷变夏，难矣。孝文不以鲜卑自限，慕中华之文明，<strong>弃戎狄之陋习</strong>。迁都洛阳，改姓汉化。使鲜卑族融入华夏，此何等胸襟！</p>
+                <p style="margin-top:.6rem">然孝文之失，在于<strong>改革太骤，人心未附</strong>。迁都之举，强人所难。鲜卑贵族虽从命，心实不满。其后六镇之乱，盖源于此。<strong>改革之道，当渐而不当骤</strong>。使人心安而后变其俗，此善政也。</p>
+                <p style="margin-top:.6rem">孝文以一人之力，融两族为一体。其后隋唐之盛，<strong>实基于此</strong>。鲜卑之血与华夏之文，融合而生新文明。此孝文之大功也。</p>
+              </div>
+              <div class="wf-ref">——《读通鉴论》卷十五 · 论北魏孝文帝改革</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<div class="event-card" id="evt-ssyd">
+      <div class="event-header" onclick="toggleCard(this)">
+        <div class="event-icon" style="background:rgba(74,154,106,.15);color:var(--green2)">☀</div>
+        <div class="event-info">
+          <h3>刘宋代晋·元嘉之治</h3>
+          <div class="event-meta"><span>420年—453年</span><span>建康</span><span>刘裕·宋文帝·檀道济</span><span>通鉴卷一一九至卷一二三</span></div>
+        </div>
+        <span class="expand-icon">▼</span>
+      </div>
+      <div class="event-body"><div class="event-body-inner">
+        <div class="tabs">
+          <div class="tab-btn active" onclick="switchTab(this,'syb-1')">纪事本末</div>
+          <div class="tab-btn" onclick="switchTab(this,'syb-2')">通鉴原文</div>
+          <div class="tab-btn" onclick="switchTab(this,'syb-3')">王夫之论</div>
+        </div>
+        <div class="tab-panel active" id="syb-1">
+          <div class="passage green"><span class="label">纪事本末始末</span>
+            <p><strong>元嘉之治（424—453年）：</strong>宋文帝刘义隆即位年号元嘉。"元嘉之治"为南朝最盛。"三十间，民庶繁息……民有所系，吏无苟得。"然文帝猜忌名将檀道济自毁长城。</p>
+            <p style="margin-top:.8rem"><strong>元嘉北伐失败：</strong>450年文帝北伐，"元嘉草草，封狼居胥，赢得仓皇北顾"。大败而还。453年太子刘劭（shào）弑父。元嘉之治终结。</p>
+          </div>
+        </div>
+        <div class="tab-panel" id="syb-2">
+          <div class="passage"><span class="label">资治通鉴 · 卷一二〇</span>
+            <p>"上聪明仁厚，勤于听政，守法而不峻，容物而不弛。百官皆久于其职，守宰以六期为断。"</p>
+            <p class="source">——资治通鉴卷一二〇 · 宋纪二</p>
+          </div>
+        </div>
+        <div class="tab-panel" id="syb-3">
+          <div class="wf-box"><div class="wf-title">王夫之《读通鉴论》卷十五 · 论元嘉</div>
+            <div class="wf-text">
+              <p>元嘉之治南朝极盛。然杀檀道济自毁长城。檀道济临刑曰："乃坏汝万里长城！"元嘉北伐之败败于轻敌，"草草"二字尽其弊矣。</p>
+            </div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+<div class="event-card" id="evt-hzfb">
+      <div class="event-header" onclick="toggleCard(this)">
+        <div class="event-icon" style="background:rgba(185,74,74,.15);color:var(--red2)">🔥</div>
+        <div class="event-info">
+          <h3>侯景之乱·南朝衰落</h3>
+          <div class="event-meta"><span>548年—552年</span><span>建康·台城</span><span>侯景·梁武帝·陈霸先</span><span>通鉴卷一六一至卷一六四</span></div>
+        </div>
+        <span class="expand-icon">▼</span>
+      </div>
+      <div class="event-body"><div class="event-body-inner">
+        <div class="tabs">
+          <div class="tab-btn active" onclick="switchTab(this,'hj2-1')">纪事本末</div>
+          <div class="tab-btn" onclick="switchTab(this,'hj2-2')">通鉴原文</div>
+          <div class="tab-btn" onclick="switchTab(this,'hj2-3')">王夫之论</div>
+        </div>
+        <div class="tab-panel active" id="hj2-1">
+          <div class="passage red"><span class="label">纪事本末始末</span>
+            <p><strong>侯景叛乱（548年）：</strong>侯景原为东魏叛将降梁。以"清君侧"为名率八百人渡江，裹挟至数万。围攻台城。549年城破，梁武帝饿死。"自我得之，自我失之，亦复何恨。"</p>
+            <p style="margin-top:.8rem"><strong>建康残破：</strong>侯景纵兵焚掠，"千里绝烟，人迹罕见"。江南富庶之地一朝残破。后为王僧辩、陈霸先击败。</p>
+            <p style="margin-top:.8rem"><strong>影响：</strong>南朝从此一蹶不振。陈霸先建陈已是南朝最后一个小朝代。</p>
+          </div>
+        </div>
+        <div class="tab-panel" id="hj2-2">
+          <div class="passage"><span class="label">资治通鉴 · 卷一六二</span>
+            <p>"上卧净居殿，口苦，索蜜不得，再曰'荷荷'，遂殂。年八十六。"</p>
+            <p class="source">——资治通鉴卷一六二 · 梁纪十八</p>
+          </div>
+        </div>
+        <div class="tab-panel" id="hj2-3">
+          <div class="wf-box"><div class="wf-title">王夫之《读通鉴论》卷十七 · 论侯景之乱</div>
+            <div class="wf-text">
+              <p>梁武帝之祸好佛而怠政。三度舍身同泰寺，群臣以亿万钱赎之。纳侯景之降贪小利招大祸。侯景之乱后江南残破，南朝从此不能与北方抗衡。</p>
+            </div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+<div class="event-card" id="evt-bfht">
+      <div class="event-header" onclick="toggleCard(this)">
+        <div class="event-icon" style="background:rgba(74,122,185,.15);color:var(--blue2)">⚔</div>
+        <div class="event-info">
+          <h3>北周灭北齐·杨坚代周</h3>
+          <div class="event-meta"><span>575年—581年</span><span>长安·邺城</span><span>宇文邕·杨坚·高纬</span><span>通鉴卷一七二至卷一七五</span></div>
+        </div>
+        <span class="expand-icon">▼</span>
+      </div>
+      <div class="event-body"><div class="event-body-inner">
+        <div class="tabs">
+          <div class="tab-btn active" onclick="switchTab(this,'bz-1')">纪事本末</div>
+          <div class="tab-btn" onclick="switchTab(this,'bz-2')">通鉴原文</div>
+          <div class="tab-btn" onclick="switchTab(this,'bz-3')">王夫之论</div>
+        </div>
+        <div class="tab-panel active" id="bz-1">
+          <div class="passage blue"><span class="label">纪事本末始末</span>
+            <p><strong>北周武帝灭佛：</strong>宇文邕（yōng）毁佛寺令僧尼还俗。"求兵于僧众之间，取地于塔庙之下。"国力大增。</p>
+            <p style="margin-top:.8rem"><strong>灭北齐（577年）：</strong>北齐后主高纬昏暴，"无愁天子"。北周武帝率军伐齐攻破邺城。北齐亡。北方统一。</p>
+            <p style="margin-top:.8rem"><strong>杨坚代周（581年）：</strong>武帝死后宣帝荒淫。杨坚以国丈身份辅政。581年代周建隋。589年灭陈天下重归一统。</p>
+          </div>
+        </div>
+        <div class="tab-panel" id="bz-2">
+          <div class="passage"><span class="label">资治通鉴 · 卷一七三</span>
+            <p>"帝曰：'佛经云，众生平等。佛图塔庙，尽是国家之物，岂可独为私财？'遂下诏悉毁之。"</p>
+            <p class="source">——资治通鉴卷一七三</p>
+          </div>
+        </div>
+        <div class="tab-panel" id="bz-3">
+          <div class="wf-box"><div class="wf-title">王夫之《读通鉴论》卷十八 · 论北周</div>
+            <div class="wf-text">
+              <p>北周武帝北朝英主。灭佛富国灭齐统一。杨坚代周以外戚篡位，然治国有方开皇之治颇有可观。得国不正而治国不差此亦奇也。</p>
+            </div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+  </section>
+
+  <section class="era-section" id="era-sui">
+    <div class="era-header">
+      <h2>卷二十三至卷二十五 · 隋</h2>
+      <div class="era-meta">581年 — 618年 · 资治通鉴卷一七七至卷一八五</div>
+    </div>
+
+<div class="event-card" id="evt-stda">
+      <div class="event-header" onclick="toggleCard(this)">
+        <div class="event-icon" style="background:rgba(74,154,106,.15);color:var(--green2)">☀</div>
+        <div class="event-info">
+          <h3>隋统一·开皇之治</h3>
+          <div class="event-meta"><span>581年—604年</span><span>长安·建康</span><span>隋文帝·韩擒虎·贺若弼</span><span>通鉴卷一七七至卷一八〇</span></div>
+        </div>
+        <span class="expand-icon">▼</span>
+      </div>
+      <div class="event-body"><div class="event-body-inner">
+        <div class="tabs">
+          <div class="tab-btn active" onclick="switchTab(this,'sk-1')">纪事本末</div>
+          <div class="tab-btn" onclick="switchTab(this,'sk-2')">通鉴原文</div>
+          <div class="tab-btn" onclick="switchTab(this,'sk-3')">王夫之论</div>
+        </div>
+        <div class="tab-panel active" id="sk-1">
+          <div class="passage green"><span class="label">纪事本末始末</span>
+            <p><strong>杨坚建隋（581年）：</strong>杨坚代周建隋定都长安。改革官制，废九品中正制。</p>
+            <p style="margin-top:.8rem"><strong>灭陈统一（589年）：</strong>隋文帝命晋王杨广统军南下。韩擒虎、贺若弼分路渡江。陈后主"隔江犹唱后庭花"。陈亡。自西晋灭亡二百七十年后天下重归一统。</p>
+            <p style="margin-top:.8rem"><strong>开皇之治：</strong>"躬节俭，平徭赋"。户口大增，"计天下储积，得供五六十年"。然文帝猜忌刻薄，"用法益峻"。</p>
+          </div>
+        </div>
+        <div class="tab-panel" id="sk-2">
+          <div class="passage"><span class="label">资治通鉴 · 卷一七七</span>
+            <p>"帝躬履节俭，乘舆御物，故弊者随宜补用。自非享宴，所食不过一肉。后宫皆服浣濯之衣。"</p>
+            <p class="source">——资治通鉴卷一七七 · 隋纪一</p>
+          </div>
+        </div>
+        <div class="tab-panel" id="sk-3">
+          <div class="wf-box"><div class="wf-title">王夫之《读通鉴论》卷十九 · 论隋文帝</div>
+            <div class="wf-text">
+              <p>隋文帝之治节俭而有效。天下储积可支数十年。然猜忌刻薄功臣不能善终。隋之统一承北周基业，自五胡乱华以来南北分裂近三百年至此方合为一。</p>
+            </div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+<div class="event-card" id="evt-sydz">
+      <div class="event-header" onclick="toggleCard(this)">
+        <div class="event-icon" style="background:rgba(185,74,74,.15);color:var(--red2)">🏯</div>
+        <div class="event-info">
+          <h3>隋炀帝 · 大运河与征高丽</h3>
+          <div class="event-meta">
+            <span>604年—618年</span>
+            <span>洛阳·涿郡·江都</span>
+            <span>杨广·宇文化及·李密·李渊</span>
+            <span>通鉴卷一八〇至卷一八五</span>
+          </div>
+        </div>
+        <span class="expand-icon">▼</span>
+      </div>
+      <div class="event-body">
+        <div class="event-body-inner">
+          <div class="tabs">
+            <div class="tab-btn active" onclick="switchTab(this,'ygd-1')">纪事本末</div>
+            <div class="tab-btn" onclick="switchTab(this,'ygd-2')">通鉴原文</div>
+            <div class="tab-btn" onclick="switchTab(this,'ygd-3')">王夫之论</div>
+          </div>
+
+          <div class="tab-panel active" id="ygd-1">
+            <div class="passage red">
+              <span class="label">纪事本末始末</span>
+              <p><strong>弑父夺位：</strong>杨广矫饰节俭，取得独孤皇后欢心。604年，文帝病重，杨广弑父（存疑）即位。</p>
+              <p style="margin-top:.8rem"><strong>营建东都：</strong>营建洛阳，征发民夫数十万。"每月役丁二百万人"。建显仁宫、西苑，穷极壮丽。</p>
+              <p style="margin-top:.8rem"><strong>开凿大运河：</strong>开通济渠、永济渠、江南河。北起涿郡（北京），南至余杭（杭州）。全长两千余公里。虽利于后世，但当时"役丁死者什四五"。</p>
+              <p style="margin-top:.8rem"><strong>三征高丽：</strong>612年至614年，三次发兵征高丽。第一次发兵一百一十三万，大败而还。"辽左死者数十万"。天下骚动。</p>
+              <p style="margin-top:.8rem"><strong>隋朝覆灭：</strong>天下群雄并起。杨广巡幸江都，不思北归。618年，宇文化及发动兵变，杨广被缢杀。李渊在长安称帝，建唐。</p>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="ygd-2">
+            <div class="passage">
+              <span class="label">资治通鉴 · 卷一八〇</span>
+              <p>"帝谓给事郎蔡征曰：'自古天子有巡狩之礼。而江東諸帝多傅脂粉，深居簡出，此何理也？'对曰：'南朝诸帝，所以不能北向争天下者，正为此也。'帝大悦。"</p>
+              <p class="source">——资治通鉴卷一八〇</p>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="ygd-3">
+            <div class="wf-box">
+              <div class="wf-title">王夫之《读通鉴论》卷十九 · 论隋炀帝</div>
+              <div class="wf-text">
+                <p>隋炀帝之过，<strong>在急于求成，不知爱惜民力</strong>。开运河、建东都、征高丽，皆非不可为之事。然同时并举，驱民如牛马，<strong>不恤其死</strong>。此其所以亡也。</p>
+                <p style="margin-top:.6rem">大运河之功，<strong>泽被千秋</strong>。至今南北交通赖之。然炀帝不知<strong>缓急之序</strong>。一役未完又兴一役，民力已竭而征发不已。使稍缓之，数世而成，何至于天下大乱？</p>
+                <p style="margin-top:.6rem"><strong>秦始皇、隋炀帝，其过一也</strong>——急于成功，不恤民力。修长城、开运河，皆千古之功。然以暴政行之，民不聊生，遂至亡国。后世当鉴：凡大工程，当<strong>量力而行，循序渐进</strong>。</p>
+              </div>
+              <div class="wf-ref">——《读通鉴论》卷十九 · 论隋炀帝之功过</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<div class="event-card" id="evt-smzh">
+      <div class="event-header" onclick="toggleCard(this)">
+        <div class="event-icon" style="background:rgba(185,74,74,.15);color:var(--red2)">⚔</div>
+        <div class="event-info">
+          <h3>隋末群雄·李渊建唐</h3>
+          <div class="event-meta"><span>613年—618年</span><span>天下</span><span>李密·窦建德·王世充·李渊</span><span>通鉴卷一八二至卷一八五</span></div>
+        </div>
+        <span class="expand-icon">▼</span>
+      </div>
+      <div class="event-body"><div class="event-body-inner">
+        <div class="tabs">
+          <div class="tab-btn active" onclick="switchTab(this,'smz-1')">纪事本末</div>
+          <div class="tab-btn" onclick="switchTab(this,'smz-2')">通鉴原文</div>
+          <div class="tab-btn" onclick="switchTab(this,'smz-3')">王夫之论</div>
+        </div>
+        <div class="tab-panel active" id="smz-1">
+          <div class="passage red"><span class="label">纪事本末始末</span>
+            <p><strong>天下大乱：</strong>隋炀帝三征高丽后天下疲敝。王薄首义，"无向辽东浪死歌"。群雄蜂起：翟让李密据瓦岗，窦建德据河北，王世充据洛阳。</p>
+            <p style="margin-top:.8rem"><strong>李渊起兵（617年）：</strong>太原留守李渊以"废昏立明"为名起兵。攻克长安。618年炀帝被弑于江都，李渊称帝建唐。</p>
+            <p style="margin-top:.8rem"><strong>统一天下：</strong>李世民先后平定薛仁杲（gǎo）、刘武周、王世充、窦建德等。至624年天下大体统一。</p>
+          </div>
+        </div>
+        <div class="tab-panel" id="smz-2">
+          <div class="passage"><span class="label">资治通鉴 · 卷一八三</span>
+            <p>"密曰：'仆虽不才，愿为天下除暴乱。'乃散家财以聚众。"</p>
+            <p class="source">——资治通鉴卷一八三</p>
+          </div>
+        </div>
+        <div class="tab-panel" id="smz-3">
+          <div class="wf-box"><div class="wf-title">王夫之《读通鉴论》卷十九 · 论隋末群雄</div>
+            <div class="wf-text">
+              <p>隋末群雄并起与秦末相似，皆因暴政而天下反。李世民之才于统一之战中已见端倪。秦王之功远过太子建成，此所以有玄武门之变也。</p>
+            </div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+  </section>
+
+  <section class="era-section" id="era-tang">
+    <div class="era-header">
+      <h2>卷二十六至卷三十八 · 大唐三百年</h2>
+      <div class="era-meta">618年 — 907年 · 资治通鉴卷一八五至卷二六五</div>
+    </div>
+
+<div class="event-card" id="evt-tcgj">
+      <div class="event-header" onclick="toggleCard(this)">
+        <div class="event-icon" style="background:rgba(185,74,74,.15);color:var(--red2)">⚔</div>
+        <div class="event-info">
+          <h3>玄武门之变 · 太宗夺嫡</h3>
+          <div class="event-meta">
+            <span>626年</span>
+            <span>长安·玄武门</span>
+            <span>李世民·李建成·李元吉·李渊</span>
+            <span>通鉴卷一九一</span>
+          </div>
+        </div>
+        <span class="expand-icon">▼</span>
+      </div>
+      <div class="event-body">
+        <div class="event-body-inner">
+          <div class="tabs">
+            <div class="tab-btn active" onclick="switchTab(this,'xwm-1')">纪事本末</div>
+            <div class="tab-btn" onclick="switchTab(this,'xwm-2')">通鉴原文</div>
+            <div class="tab-btn" onclick="switchTab(this,'xwm-3')">王夫之论</div>
+          </div>
+
+          <div class="tab-panel active" id="xwm-1">
+            <div class="passage red">
+              <span class="label">纪事本末始末</span>
+              <p><strong>兄弟争储：</strong>李世民功盖天下，太子李建成、齐王李元吉深忌之。双方各树党羽，明争暗斗。建成、元吉密谋除世民。</p>
+              <p style="margin-top:.8rem"><strong>玄武门之变（626年六月）：</strong>李世民伏兵于玄武门。建成、元吉入朝，世民射杀建成，尉迟敬德杀元吉。世民部下杀建成、元吉诸子。</p>
+              <p style="margin-top:.8rem"><strong>高祖让位：</strong>事变后，李渊立世民为太子。两个月后禅位。李世民即位，是为唐太宗。次年改元贞观。</p>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="xwm-2">
+            <div class="passage">
+              <span class="label">资治通鉴 · 卷一九一</span>
+              <p>"世民从而呼之，元吉张弓射世民，再三不彀。世民射建成，杀之。尉迟敬德将七十骑继至，左右射元吉坠马。"</p>
+              <p class="source">——资治通鉴卷一九一 · 唐纪七</p>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="xwm-3">
+            <div class="wf-box">
+              <div class="wf-title">王夫之《读通鉴论》卷二十 · 论玄武门之变</div>
+              <div class="wf-text">
+                <p>玄武门之变，<strong>太宗终身之大玷也</strong>。杀兄屠弟，逼父让位。虽有盖世之功，难掩此恶。后世子孙效之，宫廷政变屡见不鲜。太宗之过，<strong>开恶例于前</strong>。</p>
+                <p style="margin-top:.6rem">然太宗即位之后，<strong>知耻近乎勇</strong>。虚心纳谏，励精图治。贞观之治，三代以后所仅见。太宗以功业盖过恶，<strong>此亦非常人所能</strong>。</p>
+                <p style="margin-top:.6rem">或曰：太宗不杀建成，则为建成所杀。此言虽有理，<strong>然以杀求生，非圣人之道</strong>。使太宗能退让一步，或有善全之策。然太宗之才与志，不甘为人下。此亦性格使然也。</p>
+              </div>
+              <div class="wf-ref">——《读通鉴论》卷二十 · 论玄武门之变</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<div class="event-card" id="evt-gzzz">
+      <div class="event-header" onclick="toggleCard(this)">
+        <div class="event-icon" style="background:rgba(74,154,106,.15);color:var(--green2)">☀</div>
+        <div class="event-info">
+          <h3>贞观之治 · 盛世楷模</h3>
+          <div class="event-meta">
+            <span>627年—649年</span>
+            <span>长安</span>
+            <span>李世民·魏征·房玄龄（fáng xuán líng）·杜如晦</span>
+            <span>通鉴卷一九二至卷一九九</span>
+          </div>
+        </div>
+        <span class="expand-icon">▼</span>
+      </div>
+      <div class="event-body">
+        <div class="event-body-inner">
+          <div class="tabs">
+            <div class="tab-btn active" onclick="switchTab(this,'zz-1')">纪事本末</div>
+            <div class="tab-btn" onclick="switchTab(this,'zz-2')">通鉴原文</div>
+            <div class="tab-btn" onclick="switchTab(this,'zz-3')">王夫之论</div>
+          </div>
+
+          <div class="tab-panel active" id="zz-1">
+            <div class="passage green">
+              <span class="label">纪事本末始末</span>
+              <p><strong>虚心纳谏：</strong>太宗以魏征为谏议大夫，前后进谏二百余事。太宗曰："以铜为镜，可以正衣冠；以古为镜，可以知兴替；以人为镜，可以明得失。"</p>
+              <p style="margin-top:.8rem"><strong>知人善任：</strong>房玄龄善谋，杜如晦善断，二人共掌朝政。"房谋杜断"成为千古佳话。李靖、李勣为名将。"贤相良将，自古未有如此之盛。"</p>
+              <p style="margin-top:.8rem"><strong>轻徭薄赋：</strong>推行均田制、租庸调制。"贞观之初，户不满三百万，绢一匹易米一斗。至四年，米斗四五钱，外户不闭者数月。"</p>
+              <p style="margin-top:.8rem"><strong>民族政策：</strong>被尊为"天可汗"。以文德绥远，不以武力强服。四夷来朝，"胡越一家"。</p>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="zz-2">
+            <div class="passage">
+              <span class="label">资治通鉴 · 卷一九三</span>
+              <p>"上曰：'朕为兆民之主，岂可劳百姓以养己之宗族乎！'遂以功臣为刺史，以宗室为郡王，各食实封。"</p>
+              <p style="margin-top:.6rem">"上患吏多受赇，密使左右试赂之。有司门令史受绢一匹，上欲杀之。民部尚书裴矩谏曰：'为吏受赂，罪诚当死。但陛下使人遗之而受，乃陷人于法也。'上悦。"</p>
+              <p class="source">——资治通鉴卷一九三</p>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="zz-3">
+            <div class="wf-box">
+              <div class="wf-title">王夫之《读通鉴论》卷二十 · 论贞观之治</div>
+              <div class="wf-text">
+                <p>贞观之治，<strong>三代以后之极治也</strong>。太宗虽以不正当之手段得位，然其治天下之心，实出于至诚。纳谏如流，用贤不疑。魏征之直谏，太宗能容之。此非常之度量也。</p>
+                <p style="margin-top:.6rem"><strong>贞观之治之根本，在于君臣一体</strong>。太宗不以天子之尊骄慢臣下，群臣不以阿谀取容。上下交心，国政乃善。此其所以为后世楷模也。</p>
+                <p style="margin-top:.6rem">然太宗晚年，<strong>渐不如初</strong>。征高丽而无功，好大喜功之心渐起。魏征卒后，太宗曰："魏征若在，不使我有此行也。"知过而不能改，此其短也。然较之历代帝王，<strong>太宗犹为上乘</strong>。</p>
+              </div>
+              <div class="wf-ref">——《读通鉴论》卷二十 · 论贞观之治</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<div class="event-card" id="evt-wzzt">
+      <div class="event-header" onclick="toggleCard(this)">
+        <div class="event-icon" style="background:rgba(201,168,76,.15);color:var(--gold2)">👑</div>
+        <div class="event-info">
+          <h3>武则天称帝 · 女主临天下</h3>
+          <div class="event-meta">
+            <span>655年—705年</span>
+            <span>长安·洛阳</span>
+            <span>武则天·狄仁杰·上官婉儿·张柬之</span>
+            <span>通鉴卷二〇〇至卷二〇七</span>
+          </div>
+        </div>
+        <span class="expand-icon">▼</span>
+      </div>
+      <div class="event-body">
+        <div class="event-body-inner">
+          <div class="tabs">
+            <div class="tab-btn active" onclick="switchTab(this,'wzt-1')">纪事本末</div>
+            <div class="tab-btn" onclick="switchTab(this,'wzt-2')">通鉴原文</div>
+            <div class="tab-btn" onclick="switchTab(this,'wzt-3')">王夫之论</div>
+          </div>
+
+          <div class="tab-panel active" id="wzt-1">
+            <div class="passage gold">
+              <span class="label">纪事本末始末</span>
+              <p><strong>入宫与崛起：</strong>武则天十四岁入太宗后宫。太宗崩后入感业寺为尼。高宗迎回，封昭仪。655年立为皇后。高宗多病，武后逐渐参预朝政。</p>
+              <p style="margin-top:.8rem"><strong>临朝称制：</strong>高宗崩后，武后先后废中宗、睿宗。690年改国号为周，自称"圣神皇帝"。中国历史上唯一女皇帝。</p>
+              <p style="margin-top:.8rem"><strong>治国之才：</strong>重用狄仁杰等贤臣，开创殿试制度。"政由己出，明察善断"。在其治下，社会经济继续发展，为开元盛世奠定基础。</p>
+              <p style="margin-top:.8rem"><strong>神龙政变（705年）：</strong>张柬之等发动政变，武则天被迫传位中宗。是年崩，年八十二。遗言去帝号，称"则天大圣皇后"。</p>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="wzt-2">
+            <div class="passage">
+              <span class="label">资治通鉴 · 卷二〇五</span>
+              <p>"太后虽滥以禄位收天下人心，然不称职者，寻亦黜之，或加刑诛。挟刑赏之柄以驾御天下，政由己出，明察善断，故当时英贤亦竞为之用。"</p>
+              <p class="source">——资治通鉴卷二〇五</p>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="wzt-3">
+            <div class="wf-box">
+              <div class="wf-title">王夫之《读通鉴论》卷二十一 · 论武则天</div>
+              <div class="wf-text">
+                <p>武后以女子称帝，<strong>千古之奇变也</strong>。自古未有女子为天子者，武后开此先例。其胆识才略，非寻常男子所能及也。</p>
+                <p style="margin-top:.6rem">武后之治，<strong>明察善断，赏罚分明</strong>。狄仁杰等名臣皆在其朝。武后虽以阴谋得位，然治国有方。此其不可没之功也。</p>
+                <p style="margin-top:.6rem">然武后之过亦大。<strong>杀唐宗室殆尽，酷吏横行</strong>。来俊臣、周兴等以罗织罪名为能事。冤死者不可胜数。武后以恐怖统治天下，此其大恶也。</p>
+                <p style="margin-top:.6rem">武后临终去帝号，<strong>自知女子称帝终非正道</strong>。此亦有自知之明也。然后世效之，韦后、太平公主皆欲为武后，<strong>宫廷之乱，源于武后开此恶例</strong>。</p>
+              </div>
+              <div class="wf-ref">——《读通鉴论》卷二十一 · 论武后之功过</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<div class="event-card" id="evt-kssh">
+      <div class="event-header" onclick="toggleCard(this)">
+        <div class="event-icon" style="background:rgba(74,154,106,.15);color:var(--green2)">☀</div>
+        <div class="event-info">
+          <h3>开元盛世·极盛转衰</h3>
+          <div class="event-meta"><span>713年—755年</span><span>长安</span><span>唐玄宗·姚崇·宋璟·张九龄·李林甫</span><span>通鉴卷二一一至卷二一六</span></div>
+        </div>
+        <span class="expand-icon">▼</span>
+      </div>
+      <div class="event-body"><div class="event-body-inner">
+        <div class="tabs">
+          <div class="tab-btn active" onclick="switchTab(this,'ks-1')">纪事本末</div>
+          <div class="tab-btn" onclick="switchTab(this,'ks-2')">通鉴原文</div>
+          <div class="tab-btn" onclick="switchTab(this,'ks-3')">王夫之论</div>
+        </div>
+        <div class="tab-panel active" id="ks-1">
+          <div class="passage green"><span class="label">纪事本末始末</span>
+            <p><strong>开元之治：</strong>玄宗即位初励精图治。姚崇尚通宋璟尚法。"开元之盛，姚宋之功也。""稻米流脂粟米白，公私仓廪俱丰实。"</p>
+            <p style="margin-top:.8rem"><strong>天宝之变：</strong>玄宗倦怠，宠杨贵妃委政李林甫。林甫"口蜜腹剑"排挤张九龄。继之杨国忠（guó zhōng）为相。</p>
+            <p style="margin-top:.8rem"><strong>安禄山坐大：</strong>安禄山以谄媚得信任兼领三镇节度使。"天下之势偏重"。755年起兵安史之乱爆发。</p>
+          </div>
+        </div>
+        <div class="tab-panel" id="ks-2">
+          <div class="passage"><span class="label">资治通鉴 · 卷二一一</span>
+            <p>"姚崇、卢怀慎同为相。崇尝有子丧，谒告十余日，政事委积，怀慎不能决。上曰：'朕以天下事委姚崇，以卿坐镇雅俗耳。'"</p>
+            <p style="margin-top:.6rem">"林甫城府深密，人莫窥其际。好以甘言啖人，而阴中伤之。世谓其'口有蜜，腹有剑'。"</p>
+            <p class="source">——资治通鉴卷二一一至二一五</p>
+          </div>
+        </div>
+        <div class="tab-panel" id="ks-3">
+          <div class="wf-box"><div class="wf-title">王夫之《读通鉴论》卷二十二 · 论开元天宝</div>
+            <div class="wf-text">
+              <p>开元之盛与天宝之乱皆玄宗一人之变也。开元之初亲贤臣远小人，天宝之后亲小人远贤臣。怠政之害千古之鉴。</p>
+              <p style="margin-top:.6rem">李林甫为相十九年蔽主聪塞言路。张九龄被逐后朝廷无直言之人。此所谓"口蜜腹剑"之害也。</p>
+            </div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+<div class="event-card" id="evt-aszl">
+      <div class="event-header" onclick="toggleCard(this)">
+        <div class="event-icon" style="background:rgba(185,74,74,.15);color:var(--red2)">🔥</div>
+        <div class="event-info">
+          <h3>安史之乱 · 盛唐转折</h3>
+          <div class="event-meta">
+            <span>755年—763年</span>
+            <span>洛阳·潼关·马嵬驿·灵武</span>
+            <span>安禄山·史思明（sī míng）·杨国忠·郭子仪·李光弼</span>
+            <span>通鉴卷二一六至卷二二二</span>
+          </div>
+        </div>
+        <span class="expand-icon">▼</span>
+      </div>
+      <div class="event-body">
+        <div class="event-body-inner">
+          <div class="tabs">
+            <div class="tab-btn active" onclick="switchTab(this,'as-1')">纪事本末</div>
+            <div class="tab-btn" onclick="switchTab(this,'as-2')">通鉴原文</div>
+            <div class="tab-btn" onclick="switchTab(this,'as-3')">王夫之论</div>
+          </div>
+
+          <div class="tab-panel active" id="as-1">
+            <div class="passage red">
+              <span class="label">纪事本末始末</span>
+              <p><strong>玄宗怠政：</strong>开元后期，玄宗宠杨贵妃，委政于李林甫、杨国忠。"春宵苦短日高起，从此君王不早朝。"安禄山以谄媚得宠，兼领三镇节度使。</p>
+              <p style="margin-top:.8rem"><strong>安禄山起兵（755年）：</strong>以"讨杨国忠"为名，率十五万兵于范阳起兵。一路势如破竹。陷洛阳，安禄山称帝。</p>
+              <p style="margin-top:.8rem"><strong>潼关之败：</strong>哥舒翰（gē shū hàn）守潼关，本可据险而守。杨国忠促战，玄宗下令出关。大军溃败，潼关失守。玄宗仓皇出逃。</p>
+              <p style="margin-top:.8rem"><strong>马嵬驿兵变：</strong>军士哗变，杀杨国忠。玄宗被迫赐死杨贵妃。"六军不发无奈何，宛转蛾眉马前死。"</p>
+              <p style="margin-top:.8rem"><strong>八年平叛：</strong>肃宗即位于灵武。郭子仪、李光弼收复两京。然叛军内乱，安禄山、史思明相继被其子所杀。763年，叛乱平定。但大唐元气大伤，再不复开元之盛。</p>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="as-2">
+            <div class="passage">
+              <span class="label">资治通鉴 · 卷二一七</span>
+              <p>"渔阳鼙鼓动地来，惊破霓裳羽衣曲。"</p>
+              <p style="margin-top:.6rem">"上出延秋门，妃主、皇孙之在外者，皆委之而去。"</p>
+              <p class="source">——资治通鉴卷二一七至二一八</p>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="as-3">
+            <div class="wf-box">
+              <div class="wf-title">王夫之《读通鉴论》卷二十三 · 论安史之乱</div>
+              <div class="wf-text">
+                <p>安史之乱，<strong>唐由盛转衰之关键也</strong>。其祸根在于玄宗怠政。开元之初，励精图治。天宝之后，骄奢淫逸。玄宗一人之变，天下随之变矣。</p>
+                <p style="margin-top:.6rem"><strong>节度使之制，唐之大弊也</strong>。边将拥兵自重，外重内轻。安禄山兼领三镇，兵力甲于天下。使玄宗稍有警觉，何至于此？<strong>用人不当，防备不周</strong>，此玄宗之大失也。</p>
+                <p style="margin-top:.6rem">杨国忠促战，<strong>小人误国之典型</strong>。以私怨而坏大局，以谄媚而蔽君听。李林甫"口蜜腹剑"，杨国忠"嫉贤妒能"。二奸相继，唐室不衰何待？</p>
+                <p style="margin-top:.6rem">安史之乱后，<strong>藩镇割据之势已成</strong>。朝廷权威扫地，方镇自专。此后百余年，唐室不过名存实亡。故安史之乱，非仅八年之战也，<strong>乃大唐百年衰亡之始</strong>。</p>
+              </div>
+              <div class="wf-ref">——《读通鉴论》卷二十三 · 论安史之乱</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<div class="event-card" id="evt-fzgs">
+      <div class="event-header" onclick="toggleCard(this)">
+        <div class="event-icon" style="background:rgba(201,168,76,.15);color:var(--gold2)">🏴</div>
+        <div class="event-info">
+          <h3>藩镇割据 · 河朔三镇</h3>
+          <div class="event-meta">
+            <span>763年—907年</span>
+            <span>河朔·中原</span>
+            <span>李宝臣·田承嗣·李怀仙·宪宗·武宗</span>
+            <span>通鉴卷二二三至卷二六五</span>
+          </div>
+        </div>
+        <span class="expand-icon">▼</span>
+      </div>
+      <div class="event-body">
+        <div class="event-body-inner">
+          <div class="tabs">
+            <div class="tab-btn active" onclick="switchTab(this,'fz-1')">纪事本末</div>
+            <div class="tab-btn" onclick="switchTab(this,'fz-2')">通鉴原文</div>
+            <div class="tab-btn" onclick="switchTab(this,'fz-3')">王夫之论</div>
+          </div>
+
+          <div class="tab-panel active" id="fz-1">
+            <div class="passage gold">
+              <span class="label">纪事本末始末</span>
+              <p><strong>河朔三镇：</strong>安史之乱平定后，朝廷为求苟安，将河北分授降将。成德（李宝臣）、魏博（田承嗣）、卢龙（李怀仙）三镇世袭割据，"官爵、甲兵、租赋、刑杀皆自专之"。</p>
+              <p style="margin-top:.8rem"><strong>元和中兴：</strong>宪宗即位，锐意削藩。先后平定西川刘辟、淮西吴元济、淄青李师道。河朔三镇亦一度归顺。"元和中兴"，唐室权威有所恢复。</p>
+              <p style="margin-top:.8rem"><strong>藩镇反复：</strong>宪宗被弑后，河朔三镇又复割据。此后朝廷与藩镇时战时和，"虽名为藩臣，实与敌国无异"。唐室始终未能彻底解决藩镇问题。</p>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="fz-2">
+            <div class="passage">
+              <span class="label">资治通鉴 · 卷二二三</span>
+              <p>"河北诸镇，自置官吏，不输贡赋。虽名藩臣，实与敌国无异。"</p>
+              <p class="source">——资治通鉴卷二二三</p>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="fz-3">
+            <div class="wf-box">
+              <div class="wf-title">王夫之《读通鉴论》卷二十四 · 论藩镇</div>
+              <div class="wf-text">
+                <p>藩镇之祸，<strong>唐之痼疾也</strong>。安史之乱平后，朝廷不能乘胜削藩，反以降将为节度使。此养虎为患也。</p>
+                <p style="margin-top:.6rem">宪宗削藩，<strong>有中兴之志</strong>。然不过一时之功。宪宗崩后，藩镇复叛。此何也？<strong>制度之弊未除也</strong>。节度使拥兵自重，朝廷不能制。使制度不变，虽有英主亦不能久安。</p>
+                <p style="margin-top:.6rem"><strong>中央与地方之势，当如臂使指</strong>。唐之藩镇，如指大于臂，尾大不掉。此其所以终亡也。后世当鉴：兵权不可假人，<strong>内重外轻</strong>之格局不可破。</p>
+              </div>
+              <div class="wf-ref">——《读通鉴论》卷二十四 · 论藩镇之弊</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<div class="event-card" id="evt-nygn">
+      <div class="event-header" onclick="toggleCard(this)">
+        <div class="event-icon" style="background:rgba(74,122,185,.15);color:var(--blue2)">⚖</div>
+        <div class="event-info">
+          <h3>牛李党争 · 朋党乱政</h3>
+          <div class="event-meta">
+            <span>808年—846年</span>
+            <span>长安</span>
+            <span>牛僧孺（sēng rú）·李德裕（dé yù）·李宗闵</span>
+            <span>通鉴卷二三七至卷二四八</span>
+          </div>
+        </div>
+        <span class="expand-icon">▼</span>
+      </div>
+      <div class="event-body">
+        <div class="event-body-inner">
+          <div class="tabs">
+            <div class="tab-btn active" onclick="switchTab(this,'nl-1')">纪事本末</div>
+            <div class="tab-btn" onclick="switchTab(this,'nl-2')">通鉴原文</div>
+            <div class="tab-btn" onclick="switchTab(this,'nl-3')">王夫之论</div>
+          </div>
+
+          <div class="tab-panel active" id="nl-1">
+            <div class="passage blue">
+              <span class="label">纪事本末始末</span>
+              <p><strong>党争起源：</strong>808年，牛僧孺、李宗闵对策批评时政，得罪宰相李吉甫（李德裕之父）。此后两派结怨，交替执政四十年。</p>
+              <p style="margin-top:.8rem"><strong>牛党：</strong>以牛僧孺、李宗闵为首。多为进士出身，主张维持现状，反对用兵。与宦官关系密切。</p>
+              <p style="margin-top:.8rem"><strong>李党：</strong>以李德裕为首。多为门荫出身，主张削藩、用兵。政事能力较强，但党同伐异。</p>
+              <p style="margin-top:.8rem"><strong>影响：</strong>两党之争使朝廷政策反复，"是非纷纭，莫能相一"。人才选拔受党派影响，朝政日益混乱。</p>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="nl-2">
+            <div class="passage">
+              <span class="label">资治通鉴 · 卷二四四</span>
+              <p>"德裕曰：'朝廷大臣，上自宰相，下至郎署，皆由科举出身。然进士科浮华，不切实用。'"</p>
+              <p class="source">——资治通鉴卷二四四</p>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="nl-3">
+            <div class="wf-box">
+              <div class="wf-title">王夫之《读通鉴论》卷二十五 · 论牛李党争</div>
+              <div class="wf-text">
+                <p>牛李之党争，<strong>两败俱伤也</strong>。牛党虽进士出身，然但知苟安，无远图。李党虽有才干，然党同伐异，不能容人。两党交替执政，<strong>国策反复无常</strong>。</p>
+                <p style="margin-top:.6rem">李德裕之才，<strong>过于牛僧孺远矣</strong>。会昌之政，颇有可观。然德裕刚愎自用，<strong>不能容人</strong>。牛僧孺虽才不及德裕，然宽厚待人。两人各有所长，各有所短。</p>
+                <p style="margin-top:.6rem"><strong>朋党之争，国之大害</strong>。朝廷但知党争，不知国事。藩镇、宦官、边患皆不顾，但知内斗。此唐室之所以衰也。后世当鉴：<strong>为政者不可结党，结党则营私</strong>。</p>
+              </div>
+              <div class="wf-ref">——《读通鉴论》卷二十五 · 论牛李党争</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<div class="event-card" id="evt-hczz">
+      <div class="event-header" onclick="toggleCard(this)">
+        <div class="event-icon" style="background:rgba(185,74,74,.15);color:var(--red2)">🔥</div>
+        <div class="event-info">
+          <h3>黄巢起义 · 朱温代唐</h3>
+          <div class="event-meta">
+            <span>875年—907年</span>
+            <span>长安·汴州</span>
+            <span>黄巢·朱温·李克用·韩建</span>
+            <span>通鉴卷二五二至卷二六五</span>
+          </div>
+        </div>
+        <span class="expand-icon">▼</span>
+      </div>
+      <div class="event-body">
+        <div class="event-body-inner">
+          <div class="tabs">
+            <div class="tab-btn active" onclick="switchTab(this,'hc-1')">纪事本末</div>
+            <div class="tab-btn" onclick="switchTab(this,'hc-2')">通鉴原文</div>
+            <div class="tab-btn" onclick="switchTab(this,'hc-3')">王夫之论</div>
+          </div>
+
+          <div class="tab-panel active" id="hc-1">
+            <div class="passage red">
+              <span class="label">纪事本末始末</span>
+              <p><strong>黄巢起义（875年—884年）：</strong>盐贩黄巢响应王仙芝起义。转战南北，880年攻入长安，称帝建大齐。"待到秋来九月八，我花开后百花杀。"</p>
+              <p style="margin-top:.8rem"><strong>朱温崛起：</strong>朱温原为黄巢部将，后降唐。赐名朱全忠，封梁王。以汴州为基地，逐渐壮大。</p>
+              <p style="margin-top:.8rem"><strong>唐室灭亡：</strong>904年，朱温杀唐昭宗，立哀帝。907年，朱温废哀帝，自立为帝，建后梁。唐亡。</p>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="hc-2">
+            <div class="passage">
+              <span class="label">资治通鉴 · 卷二六五</span>
+              <p>"全忠乃杀枢密使蒋玄晖，又杀宰相柳璨……遂弑帝于椒殿。"</p>
+              <p class="source">——资治通鉴卷二六五</p>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="hc-3">
+            <div class="wf-box">
+              <div class="wf-title">王夫之《读通鉴论》卷二十七 · 论唐之亡</div>
+              <div class="wf-text">
+                <p>唐之亡，<strong>非亡于黄巢，非亡于朱温，亡于积弊之深也</strong>。藩镇割据、宦官专权、朋党之争，三者交困，唐室已名存实亡。黄巢不过最后一击耳。</p>
+                <p style="margin-top:.6rem">朱温之篡唐，<strong>与曹操之篡汉如出一辙</strong>。先为权臣，后为篡主。唐之权臣不绝于路，朱温不过最后成功者耳。</p>
+                <p style="margin-top:.6rem">唐之兴也，以<strong>贞观之治、开元盛世</strong>。唐之亡也，以<strong>安史之乱、藩镇割据</strong>。兴亡之鉴，不可不察。<strong>治世之君当居安思危，不可骄奢怠政</strong>。玄宗之失，千古之鉴也。</p>
+              </div>
+              <div class="wf-ref">——《读通鉴论》卷二十七 · 论唐代兴亡</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <section class="era-section" id="era-5d">
+    <div class="era-header">
+      <h2>卷三十九至卷四十二 · 五代十国</h2>
+      <div class="era-meta">907年 — 960年 · 资治通鉴卷二六六至卷二九四</div>
+    </div>
+
+<div class="event-card" id="evt-wdhw">
+      <div class="event-header" onclick="toggleCard(this)">
+        <div class="event-icon" style="background:rgba(201,168,76,.15);color:var(--gold2)">⚔</div>
+        <div class="event-info">
+          <h3>五代更迭 · 后梁后唐</h3>
+          <div class="event-meta">
+            <span>907年—936年</span>
+            <span>开封·洛阳</span>
+            <span>朱温·李存勖·石敬瑭（jìng táng）</span>
+            <span>通鉴卷二六六至卷二八〇</span>
+          </div>
+        </div>
+        <span class="expand-icon">▼</span>
+      </div>
+      <div class="event-body">
+        <div class="event-body-inner">
+          <div class="tabs">
+            <div class="tab-btn active" onclick="switchTab(this,'wd-1')">纪事本末</div>
+            <div class="tab-btn" onclick="switchTab(this,'wd-2')">通鉴原文</div>
+            <div class="tab-btn" onclick="switchTab(this,'wd-3')">王夫之论</div>
+          </div>
+
+          <div class="tab-panel active" id="wd-1">
+            <div class="passage gold">
+              <span class="label">纪事本末始末</span>
+              <p><strong>后梁（907—923）：</strong>朱温代唐建梁。朱温残暴嗜杀，淫乱无度。912年被其子朱友珪所杀。后唐庄宗李存勖灭后梁。</p>
+              <p style="margin-top:.8rem"><strong>后唐（923—936）：</strong>李存勖灭梁称帝，建国号唐。初有大志，后宠伶人，荒废朝政。"伶官误国"。926年，李嗣源兵变，李存勖被杀。李嗣源即位（明宗），颇有善政。936年，石敬瑭引契丹兵灭后唐。</p>
+              <p style="margin-top:.8rem"><strong>后晋（936—946）：</strong>石敬瑭割让燕云十六州给契丹，称契丹主为"父皇帝"。千古之耻。946年，契丹灭后晋。</p>
+              <p style="margin-top:.8rem"><strong>后汉（947—951）：</strong>刘知远建后汉。传至隐帝，郭威兵变，后汉亡。</p>
+              <p style="margin-top:.8rem"><strong>后周（951—960）：</strong>郭威建后周。养子柴荣即位，为五代最英明之君。南征北战，颇有统一之志。惜英年早逝。960年，赵匡胤陈桥兵变，建宋。</p>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="wd-2">
+            <div class="passage">
+              <span class="label">资治通鉴 · 卷二七二</span>
+              <p>"庄宗好畋猎，常与伶人狎昵。伶人用事，军士怨愤。"</p>
+              <p class="source">——资治通鉴卷二七二</p>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="wd-3">
+            <div class="wf-box">
+              <div class="wf-title">王夫之《读通鉴论》卷二十八至三十 · 论五代</div>
+              <div class="wf-text">
+                <p>五代之世，<strong>天下之大乱极矣</strong>。五十余年，五易其主。君臣之义荡然无存，<strong>以兵强马壮者为天子</strong>。</p>
+                <p style="margin-top:.6rem">石敬瑭割燕云十六州，<strong>千古之罪人也</strong>。为一己之私，卖国求荣。使北方屏障尽失，中原受制于辽数百年。直至明太祖北伐，方收复燕云。</p>
+                <p style="margin-top:.6rem">柴荣为五代第一明君。<strong>文治武功，皆有可观</strong>。若天假以年，统一天下者未必姓赵。惜乎英年早逝。赵匡胤不过承其遗业耳。</p>
+                <p style="margin-top:.6rem">五代之乱，<strong>教化不行之弊也</strong>。礼义廉耻，四维不张。人人但知武力，不知文德。此所以五代不如两汉远矣。宋兴而后，<strong>重文轻武</strong>，虽矫枉过正，亦有其不得不然之势也。</p>
+              </div>
+              <div class="wf-ref">——《读通鉴论》卷二十八至三十 · 论五代兴亡</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<div class="event-card" id="evt-wdhj">
+      <div class="event-header" onclick="toggleCard(this)">
+        <div class="event-icon" style="background:rgba(185,74,74,.15);color:var(--red2)">🏴</div>
+        <div class="event-info">
+          <h3>后晋·割让燕云十六州</h3>
+          <div class="event-meta"><span>936年—946年</span><span>开封·燕云</span><span>石敬瑭·耶律德光</span><span>通鉴卷二八〇至卷二八五</span></div>
+        </div>
+        <span class="expand-icon">▼</span>
+      </div>
+      <div class="event-body"><div class="event-body-inner">
+        <div class="tabs">
+          <div class="tab-btn active" onclick="switchTab(this,'hj3-1')">纪事本末</div>
+          <div class="tab-btn" onclick="switchTab(this,'hj3-2')">通鉴原文</div>
+          <div class="tab-btn" onclick="switchTab(this,'hj3-3')">王夫之论</div>
+        </div>
+        <div class="tab-panel active" id="hj3-1">
+          <div class="passage red"><span class="label">纪事本末始末</span>
+            <p><strong>石敬瑭借兵：</strong>后唐末帝疑石敬瑭欲移镇。敬瑭向契丹借兵，条件：割让燕云十六州，称契丹主为"父皇帝"自称"儿皇帝"。千古奇耻。</p>
+            <p style="margin-top:.8rem"><strong>割燕云：</strong>契丹助石敬瑭灭后唐建后晋。燕云十六州归契丹。中原北方屏障尽失。</p>
+            <p style="margin-top:.8rem"><strong>后晋之亡：</strong>石重贵欲摆脱契丹，946年契丹灭后晋。耶律德光入开封。然不能立足北撤病死。</p>
+          </div>
+        </div>
+        <div class="tab-panel" id="hj3-2">
+          <div class="passage"><span class="label">资治通鉴 · 卷二八〇</span>
+            <p>"敬瑭表曰：'臣愿以燕云十六州之地献于契丹，岁输帛三十万匹。'契丹主大喜，许之。"</p>
+            <p class="source">——资治通鉴卷二八〇 · 后晋纪一</p>
+          </div>
+        </div>
+        <div class="tab-panel" id="hj3-3">
+          <div class="wf-box"><div class="wf-title">王夫之《读通鉴论》卷三十 · 论石敬瑭</div>
+            <div class="wf-text">
+              <p>石敬瑭割燕云十六州千古之罪人。为一己之私卖国求荣。"儿皇帝"之称人伦之大耻。以天子之尊称臣于夷狄。后世读史至此无不切齿。</p>
+            </div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+<div class="event-card" id="evt-wdhs">
+      <div class="event-header" onclick="toggleCard(this)">
+        <div class="event-icon" style="background:rgba(74,154,106,.15);color:var(--green2)">👑</div>
+        <div class="event-info">
+          <h3>后汉·后周·柴荣之治</h3>
+          <div class="event-meta"><span>947年—960年</span><span>开封</span><span>郭威·柴荣·赵匡胤</span><span>通鉴卷二八六至卷二九四</span></div>
+        </div>
+        <span class="expand-icon">▼</span>
+      </div>
+      <div class="event-body"><div class="event-body-inner">
+        <div class="tabs">
+          <div class="tab-btn active" onclick="switchTab(this,'hh-1')">纪事本末</div>
+          <div class="tab-btn" onclick="switchTab(this,'hh-2')">通鉴原文</div>
+          <div class="tab-btn" onclick="switchTab(this,'hh-3')">王夫之论</div>
+        </div>
+        <div class="tab-panel active" id="hh-1">
+          <div class="passage gold"><span class="label">纪事本末始末</span>
+            <p><strong>后汉（947—951）：</strong>刘知远趁契丹撤兵建后汉。传至隐帝猜忌功臣。郭威兵变后汉亡。</p>
+            <p style="margin-top:.8rem"><strong>后周建国（951年）：</strong>郭威建后周。养子柴荣即位为五代第一明君。</p>
+            <p style="margin-top:.8rem"><strong>柴荣之治：</strong>南征北战取南唐淮南十四州，攻辽收复三关三州。"以十年开拓天下，十年养百姓，十年致太平。"然英年早逝年三十九。赵匡胤陈桥兵变（960年）建宋。</p>
+          </div>
+        </div>
+        <div class="tab-panel" id="hh-2">
+          <div class="passage"><span class="label">资治通鉴 · 卷二九二至二九四</span>
+            <p>"世宗以英武之才，继之以信赏必罚，群臣畏服。性敏锐，明于听断，发奸擿（tì）伏如神。"</p>
+            <p class="source">——资治通鉴卷二九二至二九四</p>
+          </div>
+        </div>
+        <div class="tab-panel" id="hh-3">
+          <div class="wf-box"><div class="wf-title">王夫之《读通鉴论》卷三十 · 论柴荣</div>
+            <div class="wf-text">
+              <p>柴荣五代第一明君文治武功皆有可观。若天假以年统一天下者未必姓赵。赵匡胤不过承其遗业。宋立之后"杯酒释兵权"以文制武，此五代之教训也。</p>
+            </div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+  </section>
+
+  <footer style="text-align:center;padding:4rem 2rem;color:var(--text3);font-size:.8rem;border-top:1px solid var(--border);margin-top:2rem">
+    <p style="color:var(--gold);font-size:1rem;margin-bottom:.5rem">三书会通</p>
+    <p>以袁枢《通鉴纪事本末》为纲，司马光《资治通鉴》为据，王夫之《读通鉴论》为鉴</p>
+    <p style="margin-top:.5rem">纪事以明其事，通鉴以考其实，读论以求其理</p>
+    <p style="margin-top:1rem;color:var(--text3)">— 制作于2026年 · 三书合一 · 以史为鉴 —</p>
+  </footer>
+
+</div><!-- /main -->
+</div><!-- /app -->
+
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+// Theme toggle
+function toggleTheme() {
+  document.body.classList.toggle('light');
+  const isLight = document.body.classList.contains('light');
+  localStorage.setItem('theme', isLight ? 'light' : 'dark');
+}
+
+// Load saved theme
+(function() {
+  const saved = localStorage.getItem('theme');
+  if (saved === 'light') document.body.classList.add('light');
+})();
+
+// Loading
+window.addEventListener('load', () => {
+  setTimeout(() => document.getElementById('loading').classList.add('hide'), 800);
+});
+
+// Sidebar toggle
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('main').classList.toggle('full');
+}
+
+// Nav group toggle
+function toggleGroup(el) {
+  el.classList.toggle('open');
+  const items = el.nextElementSibling;
+  items.classList.toggle('open');
+}
+
+// Scroll to era
+function scrollToEra(id) {
+  const el = document.getElementById(id);
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // Update era buttons
+    document.querySelectorAll('.era-btn').forEach(b => b.classList.remove('active'));
+    event.target.classList.add('active');
+  }
+}
+
+// Scroll to event
+function scrollToEvent(id) {
+  const el = document.getElementById(id);
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    // Open the card
+    if (!el.classList.contains('open')) {
+      toggleCard(el.querySelector('.event-header'));
+    }
+    // Highlight nav item
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    event.target.closest('.nav-item')?.classList.add('active');
+  }
+}
+
+// Toggle event card
+function toggleCard(header) {
+  const card = header.closest('.event-card');
+  card.classList.toggle('open');
+}
+
+// Tab switching
+function switchTab(btn, panelId) {
+  const body = btn.closest('.event-body-inner');
+  body.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  body.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(panelId).classList.add('active');
+}
+
+// Progress bar
+window.addEventListener('scroll', () => {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = (scrollTop / docHeight) * 100;
+  document.getElementById('progressBar').style.width = progress + '%';
+
+  // Back to top button
+  document.getElementById('backTop').classList.toggle('show', scrollTop > 500);
+});
+
+// Intersection Observer for card animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.event-card').forEach(card => observer.observe(card));
+
+// Search
+function doSearch(query) {
+  const cards = document.querySelectorAll('.event-card');
+  const q = query.trim().toLowerCase();
+  if (!q) {
+    cards.forEach(c => c.style.display = '');
+    return;
+  }
+  cards.forEach(card => {
+    const text = card.textContent.toLowerCase();
+    card.style.display = text.includes(q) ? '' : 'none';
+    if (text.includes(q) && !card.classList.contains('open')) {
+      card.classList.add('open');
+    }
+  });
+}
+
+// Active nav tracking on scroll
+const sections = document.querySelectorAll('.event-card[id]');
+const navItems = document.querySelectorAll('.nav-item');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(section => {
+    const rect = section.getBoundingClientRect();
+    if (rect.top < window.innerHeight / 2 && rect.bottom > 0) {
+      current = section.id;
+    }
+  });
+  navItems.forEach(item => {
+    item.classList.remove('active');
+    if (item.getAttribute('onclick')?.includes(current)) {
+      item.classList.add('active');
+    }
+  });
+});
+</script>
+</body>
+</html>
